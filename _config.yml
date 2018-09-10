@@ -1,1 +1,4 @@
 theme: jekyll-theme-minimal
+title: San Diego Planning Database
+logo: http://www.sandiegodata.org/wp-content/uploads/sites/12/2018/09/SDRDL-Square-Logo.png
+description: An extended verion of the Census Planning database for San Diego county tracts, cities and communities. 
