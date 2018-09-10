@@ -1,37 +1,8 @@
-## Welcome to GitHub Pages
+# San Diego Planning Database
 
-You can use the [editor on GitHub](https://github.com/sandiegodata/planning-database/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+This project collects, processes and publishes datasets with information linked to tracts, communities and cities in San Diego County. The core of the project is the [Census Planning Database](https://www.census.gov/research/data/planning_database/), with modifications to restrict the data to San Diego County and and make it easier to link in other datasets. 
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## Datasets
 
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/sandiegodata/planning-database/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+* [San Diego Planning Database](https://data.sandiegodata.org/dataset/sandiegodata-org-planning-tracts) The San Diego County version of the Census Planning Database
+* [Cities, Communities and Tracts](https://data.sandiegodata.org/dataset/sangis-org-communities-2018) Geographic boundaries and link files for cities, communities and tracts in San Diego County. 
