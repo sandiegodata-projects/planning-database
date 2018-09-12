@@ -1,40 +1,40 @@
-Declare,metatab-latest
-Title,Community and City and Tract Boundaries in San Diego County
-Description,"Combines  geographic boundary files for communities, cities and tracts in San"
-Description,Diego County.
-Identifier,ff738c99-8676-4807-8d01-eed39291df38
-Name,sandiegodata.org-communities-2018-5
-Dataset,communities
-Origin,sandiegodata.org
-Time,2018
-Space,
-Grain,
-Variant,
-Version,5
-Group,infrastructure
-Created,2018-08-28T02:26:59
-Modified,2018-09-09T03:16:51
-Issued,2018-09-09T03:16:46
-Distribution,http://library.metatab.org/sandiegodata.org-communities-2018-5/metadata.csv
-Distribution,http://library.metatab.org/sandiegodata.org-communities-2018-5.zip
-Distribution,http://library.metatab.org/sandiegodata.org-communities-2018-5.csv
-Ckanid,29042250-ae46-4e8f-bf89-cb6776e6275c
-Giturl,https://github.com/SDRDLAnalysts/data-projects.git
-
+Declare,metatab-latest,,,
+Title,Community and City and Tract Boundaries in San Diego County,,,
+Description,"Combines  geographic boundary files for communities, cities and tracts in San",,,
+Description,Diego County.,,,
+Identifier,ff738c99-8676-4807-8d01-eed39291df38,,,
+Name,sandiegodata.org-communities-2018-5,,,
+Dataset,communities,,,
+Origin,sandiegodata.org,,,
+Time,2018,,,
+Space,,,,
+Grain,,,,
+Variant,,,,
+Version,5,,,
+Group,infrastructure,,,
+Created,2018-08-28T02:26:59,,,
+Modified,2018-09-11T18:15:59,,,
+Issued,2018-09-09T03:16:46,,,
+Distribution,http://library.metatab.org/sandiegodata.org-communities-2018-5/metadata.csv,,,
+Distribution,http://library.metatab.org/sandiegodata.org-communities-2018-5.zip,,,
+Distribution,http://library.metatab.org/sandiegodata.org-communities-2018-5.csv,,,
+Ckanid,29042250-ae46-4e8f-bf89-cb6776e6275c,,,
+Giturl,https://github.com/sandiegodata/planning-database.git,,,
+,,,,
 Section,Contacts,Email,Organization,Url
 Wrangler,Eric Busboom,eric@civicknowledge.com,Civic Knowledge,http://civicknowledge.com
 Publisher,San Diego Regional Data Library,eric@sandiegodata.org,San Diego Regional Data Library,http://sandieogdata.org
-
+,,,,
 Section,Documentation,Title,Description,
 Documentation,file:README.md,README,,
 Documentation,doc/Community_Plan_SD.pdf,San Diego City Community Shapefile Documentation,,
 Documentation,doc/Community_Plan_CN.pdf,San Diego County Community Shapefile Documentation,,
 Documentation,doc/Municipal_Boundaries.pdf,City Boundary Shapefile Documentation,,
-
+,,,,
 Section,References,Name,Description,
 Reference,censusgeo://2016/5/CA/140,california_tracts,Tract boundary shapes,
 Reference,file:data/community-acronyms.csv,acronyms,Acronyms for communities,
-
+,,,,
 Section,Resources,Name,Description,
 Datafile,shape+file:data/Municipal_Boundaries.zip,cities,Converted source of boundaries for cities in San  Diego county,
 Datafile,shape+file:data/Community_Plan_CN.ZIP,county_communities,Converted source of boundaries for communities in unincorporated  San  Diego county,
@@ -43,7 +43,7 @@ Datafile,python:pylib#generate_tracts,tracts,Tract boundary shapes,
 Datafile,python:pylib#generate_boundaries,communities,Combined cities and community files,
 Datafile,python:pylib#tract_link,tracts_all_regions,"Link between tracts and cities, communities and county regions, with one record per city or community region",
 Datafile,python:pylib#flat_tract_link,tract_links,"Link between tracts and cities, communities and county regions, with one record per tract",
-
+,,,,
 Section,Schema,DataType,AltName,Description
 Table,cities,,,
 Table.Column,id,integer,,
@@ -95,24 +95,25 @@ Table.Column,name_code,string,,Code for the region
 Table.Column,city,string,,"City name, if the region is in a city"
 Table.Column,link_code,string,,Unique code that combines type and code.
 Table,tracts,,,
-Table.Column,geoid,string,,"Tract geoid, ACS format"
-Table.Column,statefp,integer,,"State FIPS code, always 6"
-Table.Column,countyfp,integer,,"County FIPS code, always 73"
-Table.Column,tractce,integer,,Census tract code
-Table.Column,name,number,,Tract name
+Table.Column,geoid,string,,
+Table.Column,id,integer,,
+Table.Column,statefp,integer,,
+Table.Column,countyfp,integer,,
+Table.Column,tractce,integer,,
+Table.Column,name,number,,
 Table.Column,namelsad,string,,
 Table.Column,mtfcc,string,,
 Table.Column,funcstat,string,,
-Table.Column,aland,integer,,Land area
-Table.Column,awater,integer,,Water area
-Table.Column,intptlat,number,,Internal point lattitude
-Table.Column,intptlon,number,,"Internal point, longitude"
-Table.Column,geometry,string,,Boundary geometry
+Table.Column,aland,integer,,
+Table.Column,awater,integer,,
+Table.Column,intptlat,number,,
+Table.Column,intptlon,number,,
+Table.Column,geometry,string,,
 Table,tract_links,,,
-Table.Column,geoid,string,,"Tract geoid, ACS format"
-Table.Column,city_name,string,,"City name, or “County’"
-Table.Column,city_code,string,,"City code, or “CN” for the county"
-Table.Column,community_name,string,,City or county community
-Table.Column,community_cpcode,integer,,Community plan code
-Table.Column,community_code,string,,Text code
-Table.Column,geometry,string,,Tract boundary geometry
+Table.Column,geoid,string,,
+Table.Column,city_name,string,,
+Table.Column,city_code,string,,
+Table.Column,community_name,string,,
+Table.Column,community_cpcode,integer,,
+Table.Column,community_code,string,,
+Table.Column,geometry,string,,
