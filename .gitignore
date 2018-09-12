@@ -2,5 +2,5 @@
 _packages
 _build
 .~lock.*
-
+*.pyc
 
