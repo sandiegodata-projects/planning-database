@@ -1,0 +1,6 @@
+fiona
+shapely
+pyproj
+jupyter
+ipython
+rtree
