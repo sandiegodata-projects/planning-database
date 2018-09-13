@@ -18,7 +18,7 @@ Wrangler,Eric Busboom,eric@civicknowledge.com,Civic Knowledge,http://civicknowle
 ,,,,,,
 Section,Documentation,Title,Description,,,
 Documentation,file:README.md,README,,,,
-Homepage,https://healthyplacesindex.org/,Project homepage,,,,
+Homepage,https://healthyplacesindex.org/,Project homepage,Website for the HPI project,,,
 Documentation,https://healthyplacesindex.org/wp-content/uploads/2018/07/HPI2Documentation2018-07-08-FINAL.pdf,Main Documentation,,,,
 Note,© 2018 Public Health Alliance of Southern California,,,,,
 Note,"Permission is hereby granted to use, reproduce, and distribute these materials for 
@@ -26,6 +26,8 @@ noncommercial purposes,including educational, government and community uses,
  with proper attribution to the Public Health Alliance of Southern California 
 including this copyright notice. Use of this publication does not imply endorsement
  by the Public Health Alliance of Southern California.",,,,,
+Title,Footitle,,,,,
+Image,https://www.sandiegodata.org/wp-content/uploads/sites/12/2018/04/Screen-Shot-2018-04-26-at-5.16.01-PM.png,Map logo,A really spiffy map logo,,,
 ,,,,,,
 Section,Resources,Name,Description,,,
 Datafile,https://healthyplacesindex.org/wp-content/uploads/2018/07/HPI-Master-Files-2018-07-08.zip#HPI2_MasterFile_2018-04-04.csv&encoding=latin1,hpi,Healthy Places Index master file,,,

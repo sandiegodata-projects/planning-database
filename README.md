@@ -39,7 +39,7 @@ the greographic region, and given the same geoids as in the index files, allowin
 
 Planned work for this project primarily involves adding new datasets that can be linked to the indexes, such as crime counts, wakability scores, health metrics, trasportation statistics, or anything else that local datausers need. 
 
-For a complete list of work that is being planned or executed, [refer to our issues list. ](https://github.com/sandiegodata/planning-database/issues) and [projecs board](https://github.com/sandiegodata/planning-database/projects)
+For a complete list of work that is being planned or executed, [refer to our issues list. ](https://github.com/sandiegodata/planning-database/issues) and [projects board](https://github.com/sandiegodata/planning-database/projects)
 
 ## How to Join the Project
 
