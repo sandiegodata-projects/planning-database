@@ -6,7 +6,8 @@
 
 PACKAGE_NAMES=\
 sandiegodata.org-planning \
-sandiegodata.org-communities-2018
+sandiegodata.org-communities-2018 \
+healthyplacesindex.org-healthy_places_index-san_diego
 
 
 include include.mk

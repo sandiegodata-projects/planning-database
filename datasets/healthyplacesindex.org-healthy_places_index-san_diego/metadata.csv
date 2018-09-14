@@ -3,18 +3,18 @@ Title,California Healthy Places Index
 Description,The HPI provides overall scores and more detailed data on specific policy action
 Description,"areas that shape health, like housing, transportation, education and more."
 Identifier,c2485e3f-2b73-44bf-ae91-15a6de8d407a
-Name,healthyplacesindex.org-healthy_places_index-san_diego-1
+Name,healthyplacesindex.org-healthy_places_index-san_diego-2
 Dataset,healthy_places_index
 Origin,healthyplacesindex.org
 Space,san_diego
-Version,1
+Version,2
 Group,planning-project
 Created,2018-09-12T17:57:27
-Modified,2018-09-14T05:16:10
-Issued,2018-09-14T05:16:05
-Distribution,http://library.metatab.org/healthyplacesindex.org-healthy_places_index-san_diego-1/metadata.csv
-Distribution,http://library.metatab.org/healthyplacesindex.org-healthy_places_index-san_diego-1.zip
-Distribution,http://library.metatab.org/healthyplacesindex.org-healthy_places_index-san_diego-1.csv
+Modified,2018-09-14T17:09:56
+Issued,2018-09-14T17:09:50
+Distribution,http://library.metatab.org/healthyplacesindex.org-healthy_places_index-san_diego-2/metadata.csv
+Distribution,http://library.metatab.org/healthyplacesindex.org-healthy_places_index-san_diego-2.zip
+Distribution,http://library.metatab.org/healthyplacesindex.org-healthy_places_index-san_diego-2.csv
 Ckanid,850a0022-e5a9-4a3e-90ff-6ff52a88390f
 Giturl,https://github.com/sandiegodata/planning-database.git
 ""
@@ -36,7 +36,7 @@ Datafile,https://healthyplacesindex.org/wp-content/uploads/2018/07/HPI-Master-Fi
 ""
 Section,Schema,DataType,AltName,transform,Description,Comment
 Table,hpi,,,,,
-Table.Column,CensusTract,string,censustract,acs_tract,10-digit census tract code (state+county+tractID),leading 0 for state is NOT included
+Table.Column,CensusTract,string,geoid,acs_tract,ACS format geoid,
 Table.Column,pop2010,integer,,,total  population of census tract in 2010,Decennial Census 2010
 Table.Column,pct2010gq,number,,,population in group quarters in 2010,range 0-100
 Table.Column,City,string,city,,City associated with centroid of census tract,spatially computed field
