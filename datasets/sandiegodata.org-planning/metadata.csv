@@ -8,31 +8,32 @@ Dataset,planning
 Origin,sandiegodata.org
 Grain,tracts
 Version,2
+Group,planning-project
 Created,2018-09-06T14:39:53
-Modified,2018-09-10T00:12:34
-Issued,2018-09-10T00:12:28
+Modified,2018-09-14T05:17:11
+Issued,2018-09-14T05:17:05
 Distribution,http://library.metatab.org/sandiegodata.org-planning-tracts-2/metadata.csv
 Distribution,http://library.metatab.org/sandiegodata.org-planning-tracts-2.zip
 Distribution,http://library.metatab.org/sandiegodata.org-planning-tracts-2.csv
 Ckanid,98027770-32e6-41ef-a72d-dd1b77c7f18e
-Giturl,https://github.com/SDRDLAnalysts/data-projects.git
-
+Giturl,https://github.com/sandiegodata/planning-database.git
+""
 Section,Contacts,Email,Organization,Url
 Wrangler,Eric Busboom,eric@civicknowledge.com,Civic Knowledge,http://civicknowledge.com
-
+""
 Section,Documentation,Title,Description,
 Documentation,file:README.md,README,,
 Homepage,https://www.census.gov/research/data/planning_database/,Home page,,
 Documentation,https://www.census.gov/research/data/planning_database/2018/docs/2018_Tract_PDB_Documentation_V4.pdf,Tract PDB Documentation,Primary documentation and data dictionary,
-
+""
 Section,References,Name,Description,
 Reference,https://www.census.gov/research/data/planning_database/2018/docs/pdb2018trv4_us.zip#encoding=latin1,census_planning_database,Source file for the planning database.,
 Reference,metapack+http://library.metatab.org/sandiegodata.org-communities-2018-5.zip#tract_links,communities,Links communities to tracts,
 Reference,metapack+http://library.metatab.org/sandiegodata.org-communities-2018-5.zip#tracts,tracts,TRACT BOUNDARIES,
-
+""
 Section,Resources,Name,Description,
 Datafile,python:pylib#extract_sandiego,sandiego_planning_db,,
-
+""
 Section,Schema,DataType,AltName,Description
 Table,sandiego_planning_db,,,
 Table.Column,geoid,string,,

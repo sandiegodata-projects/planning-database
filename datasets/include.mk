@@ -63,6 +63,8 @@ clean:
 	mkdir -p $(PACK_DIR)
 	find . -name _packages -exec rm -rf {} \; 
 
+clean-cache: 
+	rm -rf "$(shell mp info -C)"/library.metatab.org
 
 build: $(PACKAGE_MARKERS) ;
 

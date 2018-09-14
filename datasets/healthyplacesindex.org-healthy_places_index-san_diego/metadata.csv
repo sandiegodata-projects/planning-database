@@ -1,45 +1,47 @@
-Declare,metatab-latest,,,,,
-Title,California Healthy Places Index,,,,,
-Description,The HPI provides overall scores and more detailed data on specific policy action,,,,,
-Description,"areas that shape health, like housing, transportation, education and more.",,,,,
-Identifier,c2485e3f-2b73-44bf-ae91-15a6de8d407a,,,,,
-Name,healthyplacesindex.org-healthy_places_index-san_diego-1,,,,,
-Dataset,healthy_places_index,,,,,
-Origin,healthyplacesindex.org,,,,,
-Space,san_diego,,,,,
-Version,1,,,,,
-Created,2018-09-12T17:57:27,,,,,
-Modified,2018-09-12T18:09:23,,,,,
-Giturl,https://github.com/sandiegodata/planning-database.git,,,,,
-,,,,,,
+Declare,metatab-latest
+Title,California Healthy Places Index
+Description,The HPI provides overall scores and more detailed data on specific policy action
+Description,"areas that shape health, like housing, transportation, education and more."
+Identifier,c2485e3f-2b73-44bf-ae91-15a6de8d407a
+Name,healthyplacesindex.org-healthy_places_index-san_diego-1
+Dataset,healthy_places_index
+Origin,healthyplacesindex.org
+Space,san_diego
+Version,1
+Group,planning-project
+Created,2018-09-12T17:57:27
+Modified,2018-09-14T05:16:10
+Issued,2018-09-14T05:16:05
+Distribution,http://library.metatab.org/healthyplacesindex.org-healthy_places_index-san_diego-1/metadata.csv
+Distribution,http://library.metatab.org/healthyplacesindex.org-healthy_places_index-san_diego-1.zip
+Distribution,http://library.metatab.org/healthyplacesindex.org-healthy_places_index-san_diego-1.csv
+Ckanid,850a0022-e5a9-4a3e-90ff-6ff52a88390f
+Giturl,https://github.com/sandiegodata/planning-database.git
+""
 Section,Contacts,Email,Organization,Url,,
 Creator,,PHASoCal@PHI.org,Public Health Alliance of Southern California,https://healthyplacesindex.org/,,
 Wrangler,Eric Busboom,eric@civicknowledge.com,Civic Knowledge,http://civicknowledge.com,,
-,,,,,,
+""
 Section,Documentation,Title,Description,,,
 Documentation,file:README.md,README,,,,
 Homepage,https://healthyplacesindex.org/,Project homepage,Website for the HPI project,,,
-Documentation,https://healthyplacesindex.org/wp-content/uploads/2018/07/HPI2Documentation2018-07-08-FINAL.pdf,Main Documentation,,,,
+Documentation,https://healthyplacesindex.org/wp-content/uploads/2018/07/HPI2Documentation2018-07-08-FINAL.pdf,Main Documentation,Full technical documentation.,,,
 Note,© 2018 Public Health Alliance of Southern California,,,,,
-Note,"Permission is hereby granted to use, reproduce, and distribute these materials for 
-noncommercial purposes,including educational, government and community uses,
- with proper attribution to the Public Health Alliance of Southern California 
-including this copyright notice. Use of this publication does not imply endorsement
- by the Public Health Alliance of Southern California.",,,,,
-Title,Footitle,,,,,
-Image,https://www.sandiegodata.org/wp-content/uploads/sites/12/2018/04/Screen-Shot-2018-04-26-at-5.16.01-PM.png,Map logo,A really spiffy map logo,,,
-,,,,,,
+Note,"Permission is hereby granted to use, reproduce, and distribute these materials for noncommercial purposes,including educational,",,,,,
+Note,"government and community uses, with proper attribution to the Public Health Alliance of Southern California including this copyright notice.",,,,,
+Note,Use of this publication does not imply endorsement by the Public Health Alliance of Southern California.,,,,,
+""
 Section,Resources,Name,Description,,,
 Datafile,https://healthyplacesindex.org/wp-content/uploads/2018/07/HPI-Master-Files-2018-07-08.zip#HPI2_MasterFile_2018-04-04.csv&encoding=latin1,hpi,Healthy Places Index master file,,,
-,,,,,,
+""
 Section,Schema,DataType,AltName,transform,Description,Comment
 Table,hpi,,,,,
-Table.Column,CensusTract,string,censustract,acs_tract,10-digit census tract code (state+county+tractID),leading 0 for state is NOT included 
+Table.Column,CensusTract,string,censustract,acs_tract,10-digit census tract code (state+county+tractID),leading 0 for state is NOT included
 Table.Column,pop2010,integer,,,total  population of census tract in 2010,Decennial Census 2010
 Table.Column,pct2010gq,number,,,population in group quarters in 2010,range 0-100
-Table.Column,City,string,city,,City associated with centroid of census tract,spatially computed field 
+Table.Column,City,string,city,,City associated with centroid of census tract,spatially computed field
 Table.Column,ZIP,integer,zip,,5-digit postal zip code,from HDI 1.1
-Table.Column,County_FIPS,integer,county_fips,,4-digit code  of county,leading 0 for state is NOT included 
+Table.Column,County_FIPS,integer,county_fips,,4-digit code  of county,leading 0 for state is NOT included
 Table.Column,County_Name,string,county_name,,Name of county,Alameda . . .  Yuba
 Table.Column,UrbanType,string,urbantype,,Census classification of urban type,"urban, urban_cluster, rural"
 Table.Column,hpi2score,number,,,Total score of HPI,weighted average of policy action area means
@@ -106,22 +108,22 @@ Table.Column,twoparents,number,,,Percentage of children in married-couple family
 Table.Column,twoparents_pctile,number,,,Percentile ranking of percentage of children in married-couple family households or one parent with unmarried partner family households,0-100 (least-most advantaged)
 Table.Column,supermkts,number,,,"Percentage of the urban population residing less than 1/2 mile from a supermarket/large grocery store, or the percent of the rural population living less than 1 mile from a supermarket/large grocery store",0-100 (most-least advantaged)
 Table.Column,supermkts_pctile,number,,,"Percentile ranking of percentage of the urban population residing less than 1/2 mile from a supermarket/large grocery store, or the percent of the rural population living less than 1 mile from a supermarket/large grocery store",0-100 (least-most advantaged)
-Table.Column,ozone,number,,,"Mean of summer months (May-October) of the daily maximum 8-hour ozone concentration (ppm), averaged over three years (2012 to 2014). ",0-100 (most-least advantaged)
-Table.Column,ozone_pctile,number,,,"Percentile ranking of mean of summer months (May-October) of the daily maximum 8-hour ozone concentration (ppm), averaged over three years (2012 to 2014). ",0-100 (least-most advantaged)
-Table.Column,pm25,number,,,"Annual mean concentration of PM2.5 (average of quarterly means, μg/m3), over three years (2012 to 2014) ",0-100 (most-least advantaged)
+Table.Column,ozone,number,,,"Mean of summer months (May-October) of the daily maximum 8-hour ozone concentration (ppm), averaged over three years (2012 to 2014).",0-100 (most-least advantaged)
+Table.Column,ozone_pctile,number,,,"Percentile ranking of mean of summer months (May-October) of the daily maximum 8-hour ozone concentration (ppm), averaged over three years (2012 to 2014).",0-100 (least-most advantaged)
+Table.Column,pm25,number,,,"Annual mean concentration of PM2.5 (average of quarterly means, μg/m3), over three years (2012 to 2014)",0-100 (most-least advantaged)
 Table.Column,pm25_pctile,number,,,Percentile ranking of annual mean PM 2.5 level,0-100 (least-most advantaged)
-Table.Column,dieselpm,number,,,Spatial distribution of gridded diesel PM emissions from on-road and non-road sources for a 2012 summer day in July (kg/day) ,0-100 (most-least advantaged)
-Table.Column,dieselpm_pctile,number,,,Percentile ranking of spatial distribution of gridded diesel PM emissions from on-road and non-road sources for a 2012 summer day in July (kg/day) ,0-100 (least-most advantaged)
-Table.Column,h20contam,number,,,Cal EnviroScreen 3.0 drinking water contaminant index for selected contaminants ,0-100 (most-least advantaged)
-Table.Column,h20contam_pctile,number,,,Percentile ranking of Cal EnviroScreen 3.0 drinking water contaminant index for selected contaminants ,0-100 (least-most advantaged)
+Table.Column,dieselpm,number,,,Spatial distribution of gridded diesel PM emissions from on-road and non-road sources for a 2012 summer day in July (kg/day),0-100 (most-least advantaged)
+Table.Column,dieselpm_pctile,number,,,Percentile ranking of spatial distribution of gridded diesel PM emissions from on-road and non-road sources for a 2012 summer day in July (kg/day),0-100 (least-most advantaged)
+Table.Column,h20contam,number,,,Cal EnviroScreen 3.0 drinking water contaminant index for selected contaminants,0-100 (most-least advantaged)
+Table.Column,h20contam_pctile,number,,,Percentile ranking of Cal EnviroScreen 3.0 drinking water contaminant index for selected contaminants,0-100 (least-most advantaged)
 Table.Column,LEB,number,leb,,Life Expectancy at Birth,range 64-90
 Table.Column,LEB_pctile,number,leb_pctile,,Percentile ranking of life expectancy at birth,0-100 (least-most advantaged)
-Table.Column,white_pct,number,,,Percent of Whites in the total population ,0-100
-Table.Column,black_pct,number,,,Percent of Blacks in the total population ,0-100
-Table.Column,asian_pct,number,,,Percent of Asians in the total population ,0-100
-Table.Column,latino_pct,number,,,Percent of Latinos in the total population ,0-100
+Table.Column,white_pct,number,,,Percent of Whites in the total population,0-100
+Table.Column,black_pct,number,,,Percent of Blacks in the total population,0-100
+Table.Column,asian_pct,number,,,Percent of Asians in the total population,0-100
+Table.Column,latino_pct,number,,,Percent of Latinos in the total population,0-100
 Table.Column,multiple_pct,number,,,Percent of  two or more races in the total population,0-100
-Table.Column,NativeAm_pct,number,nativeam_pct,,Percent of  American Indian/Alaskan Natives in the total population ,0-100
-Table.Column,PacificIsl_pct,number,pacificisl_pct,,Percent of Native Hawaiians and other Pacific Islanders in the total population ,0-100
+Table.Column,NativeAm_pct,number,nativeam_pct,,Percent of  American Indian/Alaskan Natives in the total population,0-100
+Table.Column,PacificIsl_pct,number,pacificisl_pct,,Percent of Native Hawaiians and other Pacific Islanders in the total population,0-100
 Table.Column,other_pct,integer,,,Percent of some other race in the total population,0-100
-Table.Column,version,string,,,Date file was created ,"Day of Week, Month Day "
+Table.Column,version,string,,,Date file was created,"Day of Week, Month Day"
