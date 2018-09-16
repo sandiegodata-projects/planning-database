@@ -40,6 +40,8 @@ the greographic region, and given the same geoids as in the index files, allowin
 
 The easiest way to get started exploring the database is to use QGIS to make maps. See our [Getting Started Tutorial for QGIS for detailed instructions.](https://github.com/sandiegodata/planning-database/wiki/Get-Started-with-QGIS) 
 
+More advanced analysis can be done with Jupyter and Pandas. See the [Getting Started Notebook](https://github.com/sandiegodata/planning-database/blob/master/notebooks/Getting%20Started.ipynb) for details about loading and using the datasets in Jupyter. 
+
 
 ## Future Work
 
