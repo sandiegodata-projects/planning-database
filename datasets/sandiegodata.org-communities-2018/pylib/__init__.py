@@ -5,7 +5,9 @@ def link_code(type, code):
 
 
 def generate_tracts(resource, doc, env, *args, **kwargs):
- 
+    
+    """Just the tracts for San Diego county"""
+
     from metapack import get_cache
     from metapack.rowgenerator import PandasDataframeSource
     from geoid.tiger import Tract
@@ -20,32 +22,48 @@ def generate_tracts(resource, doc, env, *args, **kwargs):
 
     tracts.set_index('geoid', inplace=True)
 
-    yield from PandasDataframeSource('<df>',tracts , get_cache())
+    yield from PandasDataframeSource('<df>',tracts , get_cache())    
+
 
 def generate_boundaries(resource, doc, env, *args, **kwargs):
-    
+    """All cities and communities. Has both San Diego citm and the communities in San Diego"""
+    from rowgenerators.rowproxy import RowProxy
+     
+
+    class LowerCaseRP(RowProxy):
+
+        def __init__(self, keys):
+            super().__init__([e.lower() for e in keys])
+     
     yield 'type name name_code city link_code geometry'.split()
     
-    for row in doc.resource('cities').iterrows:  
+    for row in doc.reference('cities').iterrowproxy(LowerCaseRP): 
+         
         if row.code == 'CN':
             yield ['county', row.name, row.code, row.code, link_code('county',row.code), row.geometry]
         else:
             yield ['city', row.name, row.code, row.code, link_code('city',row.code), row.geometry]
     
-    for row in doc.resource('sd_communities').iterrows:  
+    for row in doc.reference('sd_communities').iterrowproxy(LowerCaseRP): 
         yield ['sd_community', row.cpname, row.cpcode, 'SD', link_code('sdc',row.cpcode), row.geometry]
         
-    for row in doc.resource('county_communities').iterrows:  
-        yield ['county_community', row.cpasg_labe, row.code, 'CN', link_code('cnc',row.code), row.geometry]
+    for row in doc.reference('county_communities').iterrowproxy(LowerCaseRP): 
+        yield ['county_community', row.cpasg_labe, row.cpasg, 'CN', link_code('cnc',row.cpasg), row.geometry]
     
-def tract_link(resource, doc, env, *args, **kwargs):
-    
-    from shapely.geometry import Point
+
+def clean_comm_name(s):
+    import re
+    return re.compile('[^a-zA-Z]').sub('',s.lower())  
+
+def tract_links(resource, doc, env, *args, **kwargs):
     from metapack.rowgenerator import PandasDataframeSource
-    from metapack import get_cache
+    from metapack import get_cache  
+    from shapely.geometry import Point
     import geopandas as gpd
 
-    comm = doc.resource('communities').geoframe()
+    # First, geo join the tracts into the communities and cities. 
+
+    comm = doc.resource('cities_communities').geoframe()
     tracts = doc.resource('tracts').dataframe()
 
     tracts['intp'] = tracts.apply(lambda r: Point(float(r.intptlon), float(r.intptlat)), axis=1)
@@ -56,25 +74,14 @@ def tract_link(resource, doc, env, *args, **kwargs):
 
     columns = [ 'geoid', 'type', 'name', 'name_code', 'city', 'link_code' ]
 
-    tract_community = tract_community.rename({'name_left':'name'}, axis=1)[columns]
-
-    yield from PandasDataframeSource('<df>',tract_community , get_cache())
-  
-def clean_comm_name(s):
-    import re
-    return re.compile('[^a-zA-Z]').sub('',s.lower())  
-
-  
-def flat_tract_link(resource, doc, env, *args, **kwargs):
-    from metapack.rowgenerator import PandasDataframeSource
-    from metapack import get_cache
-
-    tc = doc.resource('tracts_all_regions').dataframe()
-    tracts = doc.resource('tracts').geoframe()
+    tc = tract_community.rename({'name_left':'name'}, axis=1)[columns]
+    
+    # Now link everything together. 
+    
     acronyms = doc.reference('acronyms')
-
     acro_map = dict(list(acronyms)[1:])
     acro_map[''] = ''
+
 
     _1 = tc[['geoid']].drop_duplicates().set_index('geoid').join(tracts[['geoid', 'geometry']].set_index('geoid'))
     _2 = tc.set_index('geoid')
