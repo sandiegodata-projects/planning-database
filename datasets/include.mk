@@ -23,6 +23,10 @@ PACKAGE_MARKERS = $(patsubst %,$(PACK_DIR)/%.build,$(PACKAGE_NAMES))
 S3_MARKERS = $(patsubst %,$(PACK_DIR)/%.s3,$(PACKAGE_NAMES))
 CKAN_MARKERS = $(patsubst %,$(PACK_DIR)/%.ckan,$(PACKAGE_NAMES))
 
+# Extra packages list the web-accessible packages that 
+# will be also sent to CKAN
+EXTRA_CKAN_MARKERS = $(patsubst %,$(PACK_DIR)/%.ext_ckan,$(EXTRA_PACKAGE_URLS))
+
 $(PACK_DIR):
 	mkdir -p $(PACK_DIR)
 
@@ -43,10 +47,13 @@ $(PACK_DIR)/%.s3: $(PACK_DIR)/%.build
 	
 $(PACK_DIR)/%.ckan: $(PACK_DIR)/%.s3
 	@echo ======== CKAN $* \( $@ \) =======
-	mp ckan  $* && touch $(PACK_DIR)/$*.ckan 
+	mp ckan $(CKAN_GROUPS) $* && touch $(PACK_DIR)/$*.ckan 
 	touch -r $(PACK_DIR)/$*.build $*/metadata.csv # mp ckan updates the metadata, but we don't want to re-trigger build
 
-
+$(PACK_DIR)/%.ext_ckan: 
+	@echo ======== CKAN $* \( $@ \) =======
+	mp ckan $(CKAN_GROUPS) $* && touch $(PACK_DIR)/$*.ext_ckan 
+	
 # Make a package, using the packages'
 # non-versioned names
 $(PACKAGE_NAMES): %:$(PACK_DIR)/%.build ; 
@@ -78,6 +85,7 @@ clean-s3:
 	
 ckan: $(CKAN_MARKERS) ;
 	
-
+etra-ckan: $(EXTRA_CKAN_MARKERS) ;
+	
 clean-ckan:
 	rm -f $(PACK_DIR)/*.ckan
