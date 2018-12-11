@@ -1,0 +1,621 @@
+Declare,metatab-latest
+Title,
+Description,
+Identifier,74a6ab7f-ed19-4696-96b4-f9a881bc1914
+Name,sandiegodata.org-planning-1
+Dataset,planning
+Origin,sandiegodata.org
+Time,
+Space,
+Grain,
+Variant,
+Version,1
+Created,2018-12-07T18:19:46
+Modified,2018-12-11T00:13:48
+Giturl,https://github.com/sandiegodata/planning-database.git
+""
+Section,Contacts,Email,Organization,,,Url
+Wrangler,Eric Busboom,eric@civicknowledge.com,Civic Knowledge,,,http://civicknowledge.com
+""
+Section,Documentation,Title,Description,,,
+Documentation,file:README.md,README,,,,
+""
+Section,References,Name,Description,,,
+Reference,metapack+http://library.metatab.org/sandiegodata.org-planning-tracts-6.csv#planning_db_sd,planning_db_sd,San Diego county planning database tracts,,,
+""
+Section,Resources,Name,Description,,,
+Datafile,metapack+http://library.metatab.org/sandiegodata.org-geography-2018-1.csv#tracts,tracts,,,,
+Datafile,metapack+http://library.metatab.org/sandiegodata.org-geography-2018-1.csv#tract_communities,tract_links,,,,
+Datafile,metapack+http://library.metatab.org/sandiegodata.org-geography-2018-1.csv#tract_boundaries,tract_boundaries,,,,
+Datafile,metapack+http://library.metatab.org/sandiegodata.org-geography-2018-1.csv#community_boundaries,community_boundaries,,,,
+Datafile,metapack+http://library.metatab.org/sandiegodata.org-diabetes_sae-1.csv#tract_diabetes,tract_diabetes,,,,
+Datafile,metapack+http://library.metatab.org/healthyplacesindex.org-healthy_places_index-san_diego-4.csv#hpi,hpi,,,,
+Datafile,python:pylib#select_acs,acs_pdb,"Planning database for tracts in SD County, ACS columns",,,
+Datafile,python:pylib#select_cen10,cen10_pdb,"Planning database for tracts in SD County, Census 2010 columns",,,
+""
+Section,Schema,DataType,Comment,Group,Description
+Table,tracts,,,,
+Table.Column,geoid,string,,,"Tract geoid, ACS format"
+Table.Column,statefp,integer,,,State FIPS code
+Table.Column,countyfp,integer,,,County FIPS code
+Table.Column,tractce,integer,,,Census tract code
+Table.Column,name,number,,,"Census tract name, this is the census tract code converted to an integer or integer plus two-digit decimal if the last two characters of the code are not both zeros."
+Table.Column,namelsad,string,,,Translated legal/statistical area description and the census tract name
+Table.Column,mtfcc,string,,,MAF/TIGER feature class code (G5020)
+Table.Column,funcstat,string,,,Functional status
+Table.Column,aland,integer,,,Land area
+Table.Column,awater,integer,,,Water area
+Table.Column,intptlat,number,,,Latitude of the internal point
+Table.Column,intptlon,number,,,Longitude of the internal point
+Table,tract_links,,,,
+Table.Column,geoid,string,,,Tract Geoid
+Table.Column,city_name,string,,,Name of the city the tract is in.
+Table.Column,city_code,string,,,Code for the city the tract is in.
+Table.Column,community_name,string,,,Community name
+Table.Column,community_cpcode,integer,,,Community planning code
+Table.Column,community_code,string,,,Short community Mnemonic code.
+Table,community_boundaries,,,,
+Table.Column,type,string,,,"Record type:  city, sd_community, county_community, county"
+Table.Column,name,string,,,Community name
+Table.Column,name_code,string,,,Short name code
+Table.Column,city,string,,,"City the community is in, or the county."
+Table.Column,link_code,string,,,Unique code for linking records
+Table.Column,geometry,string,,,"Boundary geometry, in WKT format."
+Table,tract_diabetes,,,,
+Table.Column,geoid,string,,,
+Table.Column,asian,number,,,
+Table.Column,black,string,,,
+Table.Column,hisp,number,,,
+Table.Column,nhwhite,number,,,
+Table.Column,other,number,,,
+Table.Column,total,number,,,
+Table,hpi,,,,
+Table.Column,geoid,string,,geography,ACS format geoid
+Table.Column,pop2010,integer,Decennial Census 2010,demographic,total  population of census tract in 2010
+Table.Column,pct2010gq,number,range 0-100,demographic,population in group quarters in 2010
+Table.Column,city,text,spatially computed field,geography,City associated with centroid of census tract
+Table.Column,zip,integer,from HDI 1.1,geography,5-digit postal zip code
+Table.Column,county_fips,integer,leading 0 for state is NOT included,geography,4-digit code  of county
+Table.Column,county_name,string,Alameda . . .  Yuba,geography,Name of county
+Table.Column,urbantype,string,"urban, urban_cluster, rural",geography,Census classification of urban type
+Table.Column,hpi2score,number,weighted average of policy action area means,hpi,Total score of HPI
+Table.Column,hpi2_pctile_pos,number,0-100 (least-most advantaged),hpi,Percentile ranking of HPI score (positive frame)
+Table.Column,hpi2_pctile_neg,number,0-100 (most-least advantaged),hpi,Percentile ranking of HPI score (negative frame)
+Table.Column,hpi_top25pct,string,"Yes=top 25% (most advantaged), No= bottom 75% (less advantaged)",hpi,Top 25% most advantaged
+Table.Column,quintiles,integer,1-5 (most-least advantaged),hpi,Quintile of HPI score
+Table.Column,quartiles,integer,1-4 (most-least advantaged),hpi,Quartile of HPI score
+Table.Column,economic,number,"Highest value= most advantaged, 0=least",economy,"Economic policy action area score, summed Z-scores of individual policy action area variables"
+Table.Column,economic_pctile,number,0-100 (least-most advantaged),economy,"Percentile ranking ranking of ""economic"" policy action area z score"
+Table.Column,education,number,"Highest value= most advantaged, 0=least",education,"Education score, summed Z-scores of individual policy action area variables"
+Table.Column,education_pctile,number,0-100 (least-most advantaged),education,"Percentile ranking of ""education"" policy action area z score"
+Table.Column,housing,number,"Highest value= most advantaged, 0=least",housing,"Housing policy action area score, summed Z-scores of individual policy action area variables"
+Table.Column,houseing_pctile,number,0-100 (least-most advantaged),housing,"Percentile ranking of ""housing"" policy action area z score"
+Table.Column,healthcareaccess,number,"Highest value= most advantaged, 0=least",healthcare,"Healthcare Access policy action area score, z-score of insurance variable"
+Table.Column,healthcareaccess_pctile,number,0-100 (least-most advantaged),healthcare,"Percentile ranking of ""healthcare access"" policy action area z score"
+Table.Column,neighborhood,number,"Highest value= most advantaged, 0=least",neighborhood,"Neighborhood policy action area score, summed Z-scores of individual policy action area variables"
+Table.Column,neighborhood_pctile,number,0-100 (least-most advantaged),neighborhood,"Percentile ranking of ""neighborhood"" policy action area z score"
+Table.Column,pollution,number,"Highest value= most advantaged, 0=least",environment,"Pollution (""Clean Environment"") policy action area score, summed Z-scores of individual policy action area variables"
+Table.Column,pollution_pctile,number,0-100 (least-most advantaged),environment,"Percentile ranking of ""pollution"" policy action area z score"
+Table.Column,transportation,number,"Highest value= most advantaged, 0=least",transportation,"Transportation policy action area score, summed Z-scores of individual policy action area variables"
+Table.Column,transportation_pctile,number,0-100 (least-most advantaged),transportation,"Percentile ranking of ""transportation"" policy action area z score"
+Table.Column,social,number,"Highest value= most advantaged, 0=least",neighborhood,"Social policy action area score, summed Z-scores of individual policy action area variables"
+Table.Column,social_pctile,number,0-100 (least-most advantaged),neighborhood,"Percentile ranking of ""social"" policy action area z score"
+Table.Column,insured,number,0-100 (least-most advantaged),healthcare,Percentage of adults aged 18 to 64 years currently insured
+Table.Column,insured_pctile,number,0-100 (least-most advantaged),healthcare,Percentile ranking of percentage of adults aged 18 to 64 years currently insured
+Table.Column,uncrowded,number,0-100 (least-most advantaged),housing,Percentage of households with less or equal to 1 occupant per room
+Table.Column,uncrowded_pctile,number,0-100 (least-most advantaged),housing,Percentile ranking of uncrowded households
+Table.Column,homeownership,number,0-100 (least-most advantaged),housing,Percentage of occupied housing units occupied by property owners
+Table.Column,homeownership_pctile,number,0-100 (least-most advantaged),housing,Percentile ranking of percentage of occupied housing units occupied by property owners
+Table.Column,automobile,number,0-100 (least-most advantaged),transportation,Percentage of households with access to an automobile
+Table.Column,automobile_pctile,number,0-100 (least-most advantaged),transportation,Percentile ranking of households with access to an automobile
+Table.Column,commute,number,0-100 (least-most advantaged),transportation,"Percentage of workers (16 years and older) who commute to work by transit, walking, or cycling"
+Table.Column,commute_pctile,number,0-100 (least-most advantaged),transportation,"Percentile ranking of percentage of workers (16 years and older) who commute to work by transit, walking, or cycling"
+Table.Column,inpreschool,number,0-100 (least-most advantaged),education,Percentage of 3 and 4 year olds enrolled in school
+Table.Column,inpreschool_pctile,number,0-100 (least-most advantaged),education,Percentile ranking of 3 and 4 year olds enrolled in school
+Table.Column,inhighschool,number,0-100 (least-most advantaged),education,Percentage of 15-17 year olds enrolled in school
+Table.Column,inhighschool_pctile,number,0-100 (least-most advantaged),education,Percentile ranking of 15-17 year olds enrolled in school
+Table.Column,bachelorsed,number,0-100 (least-most advantaged),education,Percentage of population over age 25 with a bachelor's education or higher
+Table.Column,bachelorsed_pctile,number,0-100 (least-most advantaged),education,Percentile ranking of percentage of population over age 25 with a bachelor's education or higher
+Table.Column,employed,number,0-100 (least-most advantaged),employment,Percentage of population aged 25-64 who are employed
+Table.Column,employed_pctile,number,0-100 (least-most advantaged),employment,Percentile ranking of population aged 25-64 who are employed
+Table.Column,abovepoverty,number,0-100 (least-most advantaged),income,Percent of the population with an income exceeding 200% of federal poverty level
+Table.Column,abovepoverty_pctile,number,0-100 (least-most advantaged),income,Percentile ranking of the population with an income exceeding 200% of federal poverty level
+Table.Column,income,integer,>=0,income,Median annual household income
+Table.Column,income_pctile,number,0-100 (least-most advantaged),income,Percentile ranking of median annual household income
+Table.Column,retail,number,0-100 (least-most advantaged),neighborhood,"Gross retail, entertainment, and education employment density (jobs/acre) on unprotected land"
+Table.Column,retail_pctile,number,0-100 (least-most advantaged),neighborhood,"Percentile ranking of employment density for retail, entertainment, and educational uses"
+Table.Column,parkaccess,number,0-100 (least-most advantaged),neighborhood,"Percentage of the population living within a half-mile of a park, beach, or open space greater than 1 acre"
+Table.Column,parkaccess_pctile,number,0-100 (least-most advantaged),neighborhood,"Percentile ranking of the population living within a half-mile of a park, beach, or open space greater than 1 acre"
+Table.Column,treecanopy,number,0-100 (least-most advantaged),neighborhood,Population-weighted percentage of the census tract area without tree canopy
+Table.Column,treecanopy_pctile,number,0-100 (least-most advantaged),neighborhood,Percentile ranking of population-weighted percentage of the census tract area without tree canopy
+Table.Column,alcoffsale,number,0-100 (least-most advantaged),neighborhood,Percent of Population beyond 1/4 Mile of Off-Sale Alcohol Outlets
+Table.Column,alcoffsale_pctile,number,0-100 (least-most advantaged),neighborhood,Percentile ranking of the opulation within 1/4 Mile of Off-Sale Alcohol Outlets
+Table.Column,voting,number,0-100 (least-most advantaged),civic,Percentage of registered voters voting in the 2012 general election
+Table.Column,voting_pctile,number,0-100 (least-most advantaged),civic,Percentile ranking of registered voters voting in the 2012 general election
+Table.Column,ownsevere,number,0-100 (most-least advantaged),income,Percent of low income owner households with housing costs exceeding 50% of income
+Table.Column,ownsevere_pctile,number,0-100 (least-most advantaged),income,Percentile ranking of low income owner households with housing costs exceeding 50% of income
+Table.Column,rentsevere,number,0-100 (most-least advantaged),income,Percent of low income renter households with housing costs exceeding 50% of income
+Table.Column,rentsevere_pctile,number,0-100 (least-most advantaged),income,Percentile ranking of low income renter households with housing costs exceeding 50% of income
+Table.Column,houserepair,number,0-100 (least-most advantaged),housing,Percent of households with kitchen facilities and plumbing
+Table.Column,houserepair_pctile,number,0-100 (least-most advantaged),housing,Percentile ranking of the households with kitchen facilities and plumbing
+Table.Column,twoparents,number,0-100 (least-most advantaged),,Percentage of children in married-couple family households or one parent with unmarried partner family households
+Table.Column,twoparents_pctile,number,0-100 (least-most advantaged),,Percentile ranking of percentage of children in married-couple family households or one parent with unmarried partner family households
+Table.Column,supermkts,number,0-100 (most-least advantaged),neighborhood,"Percentage of the urban population residing less than 1/2 mile from a supermarket/large grocery store, or the percent of the rural population living less than 1 mile from a supermarket/large grocery store"
+Table.Column,supermkts_pctile,number,0-100 (least-most advantaged),neighborhood,"Percentile ranking of percentage of the urban population residing less than 1/2 mile from a supermarket/large grocery store, or the percent of the rural population living less than 1 mile from a supermarket/large grocery store"
+Table.Column,ozone,number,0-100 (most-least advantaged),environment,"Mean of summer months (May-October) of the daily maximum 8-hour ozone concentration (ppm), averaged over three years (2012 to 2014)."
+Table.Column,ozone_pctile,number,0-100 (least-most advantaged),environment,"Percentile ranking of mean of summer months (May-October) of the daily maximum 8-hour ozone concentration (ppm), averaged over three years (2012 to 2014)."
+Table.Column,pm25,number,0-100 (most-least advantaged),environment,"Annual mean concentration of PM2.5 (average of quarterly means, μg/m3), over three years (2012 to 2014)"
+Table.Column,pm25_pctile,number,0-100 (least-most advantaged),environment,Percentile ranking of annual mean PM 2.5 level
+Table.Column,dieselpm,number,0-100 (most-least advantaged),environment,Spatial distribution of gridded diesel PM emissions from on-road and non-road sources for a 2012 summer day in July (kg/day)
+Table.Column,dieselpm_pctile,number,0-100 (least-most advantaged),environment,Percentile ranking of spatial distribution of gridded diesel PM emissions from on-road and non-road sources for a 2012 summer day in July (kg/day)
+Table.Column,h20contam,number,0-100 (most-least advantaged),environment,Cal EnviroScreen 3.0 drinking water contaminant index for selected contaminants
+Table.Column,h20contam_pctile,number,0-100 (least-most advantaged),environment,Percentile ranking of Cal EnviroScreen 3.0 drinking water contaminant index for selected contaminants
+Table.Column,leb,number,range 64-90,health,Life Expectancy at Birth
+Table.Column,leb_pctile,number,0-100 (least-most advantaged),health,Percentile ranking of life expectancy at birth
+Table.Column,white_pct,number,0-100,demographic,Percent of Whites in the total population
+Table.Column,black_pct,number,0-100,demographic,Percent of Blacks in the total population
+Table.Column,asian_pct,number,0-100,demographic,Percent of Asians in the total population
+Table.Column,latino_pct,number,0-100,demographic,Percent of Latinos in the total population
+Table.Column,multiple_pct,number,0-100,demographic,Percent of  two or more races in the total population
+Table.Column,nativeam_pct,number,0-100,demographic,Percent of  American Indian/Alaskan Natives in the total population
+Table.Column,pacificisl_pct,number,0-100,demographic,Percent of Native Hawaiians and other Pacific Islanders in the total population
+Table.Column,other_pct,integer,0-100,demographic,Percent of some other race in the total population
+Table.Column,version,string,"Day of Week, Month Day",metadata,Date file was created
+Table,tract_boundaries,,,,
+Table.Column,geoid,string,,,"Tract geoid, ACS format"
+Table.Column,geometry,string,,,Tract boundary geometry
+Table,acs_pdb,,,,
+Table.Column,geoid,string,,,
+Table.Column,flag,string,,,
+Table.Column,land_area,number,,,
+Table.Column,aian_land,integer,,,
+Table.Column,tot_population,integer,,,
+Table.Column,tot_population_m90,integer,,,
+Table.Column,males,integer,,,
+Table.Column,males_m90,integer,,,
+Table.Column,females,integer,,,
+Table.Column,females_m90,integer,,,
+Table.Column,pop_under_5,integer,,,
+Table.Column,pop_under_5_m90,integer,,,
+Table.Column,pop_5_17,integer,,,
+Table.Column,pop_5_17_m90,integer,,,
+Table.Column,pop_18_24,integer,,,
+Table.Column,pop_18_24_m90,integer,,,
+Table.Column,pop_25_44,integer,,,
+Table.Column,pop_25_44_m90,integer,,,
+Table.Column,pop_45_64,integer,,,
+Table.Column,pop_45_64_m90,integer,,,
+Table.Column,pop_65plus,integer,,,
+Table.Column,pop_65plus_m90,integer,,,
+Table.Column,hispanic,integer,,,
+Table.Column,hispanic_m90,integer,,,
+Table.Column,nh_white_alone,integer,,,
+Table.Column,nh_white_alone_m90,integer,,,
+Table.Column,nh_blk_alone,integer,,,
+Table.Column,nh_blk_alone_m90,integer,,,
+Table.Column,nh_aian_alone,integer,,,
+Table.Column,nh_aian_alone_m90,integer,,,
+Table.Column,nh_asian_alone,integer,,,
+Table.Column,nh_asian_alone_m90,integer,,,
+Table.Column,nh_nhopi_alone,integer,,,
+Table.Column,nh_nhopi_alone_m90,integer,,,
+Table.Column,nh_sor_alone,integer,,,
+Table.Column,nh_sor_alone_m90,integer,,,
+Table.Column,pop_5yrs_over,integer,,,
+Table.Column,pop_5yrs_over_m90,integer,,,
+Table.Column,othr_lang,integer,,,
+Table.Column,othr_lang_m90,integer,,,
+Table.Column,age5p_only_english,integer,,,
+Table.Column,age5p_only_english_m90,integer,,,
+Table.Column,age5p_spanish,integer,,,
+Table.Column,age5p_spanish_m90,integer,,,
+Table.Column,age5p_french,integer,,,
+Table.Column,age5p_french_m90,integer,,,
+Table.Column,age5p_german,integer,,,
+Table.Column,age5p_german_m90,integer,,,
+Table.Column,age5p_russian,integer,,,
+Table.Column,age5p_russian_m90,integer,,,
+Table.Column,age5p_otheuro,integer,,,
+Table.Column,age5p_otheuro_m90,integer,,,
+Table.Column,age5p_korean,integer,,,
+Table.Column,age5p_korean_m90,integer,,,
+Table.Column,age5p_chinese,integer,,,
+Table.Column,age5p_chinese_m90,integer,,,
+Table.Column,age5p_vietnamese,integer,,,
+Table.Column,age5p_vietnamese_m90,integer,,,
+Table.Column,age5p_tagalog,integer,,,
+Table.Column,age5p_tagalog_m90,integer,,,
+Table.Column,age5p_othasian,integer,,,
+Table.Column,age5p_othasian_m90,integer,,,
+Table.Column,age5p_arabic,integer,,,
+Table.Column,age5p_arabic_m90,integer,,,
+Table.Column,age5p_othunsp,integer,,,
+Table.Column,age5p_othunsp_m90,integer,,,
+Table.Column,pop_25yrs_over,integer,,,
+Table.Column,pop_25yrs_over_m90,integer,,,
+Table.Column,not_hs_grad,integer,,,
+Table.Column,not_hs_grad_m90,integer,,,
+Table.Column,college,integer,,,
+Table.Column,college_m90,integer,,,
+Table.Column,pov_univ,integer,,,
+Table.Column,pov_univ_m90,integer,,,
+Table.Column,prs_blw_pov_lev,integer,,,
+Table.Column,prs_blw_pov_lev_m90,integer,,,
+Table.Column,one_health_ins,integer,,,
+Table.Column,one_health_ins_m90,integer,,,
+Table.Column,two_plus_health_ins,integer,,,
+Table.Column,two_plus_health_ins_m90,integer,,,
+Table.Column,no_health_ins,integer,,,
+Table.Column,no_health_ins_m90,integer,,,
+Table.Column,civ_labor_16plus,integer,,,
+Table.Column,civ_labor_16plus_m90,integer,,,
+Table.Column,civ_emp_16plus,integer,,,
+Table.Column,civ_emp_16plus_m90,integer,,,
+Table.Column,civ_unemp_16plus,integer,,,
+Table.Column,civ_unemp_16plus_m90,integer,,,
+Table.Column,civ_labor_16_24,integer,,,
+Table.Column,civ_labor_16_24_m90,integer,,,
+Table.Column,civ_emp_16_24,integer,,,
+Table.Column,civ_emp_16_24_m90,integer,,,
+Table.Column,civ_unemp_16_24,integer,,,
+Table.Column,civ_unemp_16_24_m90,integer,,,
+Table.Column,civ_labor_25_44,integer,,,
+Table.Column,civ_labor_25_44_m90,integer,,,
+Table.Column,civ_emp_25_44,integer,,,
+Table.Column,civ_emp_25_44_m90,integer,,,
+Table.Column,civ_unemp_25_44,integer,,,
+Table.Column,civ_unemp_25_44_m90,integer,,,
+Table.Column,civ_labor_45_64,integer,,,
+Table.Column,civ_labor_45_64_m90,integer,,,
+Table.Column,civ_emp_45_64,integer,,,
+Table.Column,civ_emp_45_64_m90,integer,,,
+Table.Column,civ_unemp_45_64,integer,,,
+Table.Column,civ_unemp_45_64_m90,integer,,,
+Table.Column,civ_noninst_pop,integer,,,
+Table.Column,civ_noninst_pop_m90,integer,,,
+Table.Column,pop_disabled,integer,,,
+Table.Column,pop_disabled_m90,integer,,,
+Table.Column,pop_1yr_over,integer,,,
+Table.Column,pop_1yr_over_m90,integer,,,
+Table.Column,diff_hu_1yr_ago,integer,,,
+Table.Column,diff_hu_1yr_ago_m90,integer,,,
+Table.Column,born_us,integer,,,
+Table.Column,born_us_m90,integer,,,
+Table.Column,born_foreign,integer,,,
+Table.Column,born_foreign_m90,integer,,,
+Table.Column,us_cit_nat,integer,,,
+Table.Column,us_cit_nat_m90,integer,,,
+Table.Column,non_us_cit,integer,,,
+Table.Column,non_us_cit_m90,integer,,,
+Table.Column,eng_vw_span,integer,,,
+Table.Column,eng_vw_span_m90,integer,,,
+Table.Column,eng_vw_indo_euro,integer,,,
+Table.Column,eng_vw_indo_euro_m90,integer,,,
+Table.Column,eng_vw_api,integer,,,
+Table.Column,eng_vw_api_m90,integer,,,
+Table.Column,eng_vw_other,integer,,,
+Table.Column,eng_vw_other_m90,integer,,,
+Table.Column,eng_vw,integer,,,
+Table.Column,eng_vw_m90,integer,,,
+Table.Column,rel_family_hhd,integer,,,
+Table.Column,rel_family_hhd_m90,integer,,,
+Table.Column,mrdcple_fmly_hhd,integer,,,
+Table.Column,mrdcple_fmly_hhd_m90,integer,,,
+Table.Column,not_mrdcple_hhd,integer,,,
+Table.Column,not_mrdcple_hhd_m90,integer,,,
+Table.Column,female_no_hb,integer,,,
+Table.Column,female_no_hb_m90,integer,,,
+Table.Column,nonfamily_hhd,integer,,,
+Table.Column,nonfamily_hhd_m90,integer,,,
+Table.Column,sngl_prns_hhd,integer,,,
+Table.Column,sngl_prns_hhd_m90,integer,,,
+Table.Column,hhd_ppl_und_18,integer,,,
+Table.Column,hhd_ppl_und_18_m90,integer,,,
+Table.Column,tot_prns_in_hhd,integer,,,
+Table.Column,tot_prns_in_hhd_m90,integer,,,
+Table.Column,rel_child_under_6,integer,,,
+Table.Column,rel_child_under_6_m90,integer,,,
+Table.Column,hhd_moved_in,integer,,,
+Table.Column,hhd_moved_in_m90,integer,,,
+Table.Column,pub_asst_inc,integer,,,
+Table.Column,pub_asst_inc_m90,integer,,,
+Table.Column,med_hhd_inc,integer,,,
+Table.Column,med_hhd_inc_m90,integer,,,
+Table.Column,aggregate_hh_inc,integer,,,
+Table.Column,aggregate_hh_inc_m90,integer,,,
+Table.Column,tot_housing_units,integer,,,
+Table.Column,tot_housing_units_m90,integer,,,
+Table.Column,tot_occp_units,integer,,,
+Table.Column,tot_occp_units_m90,integer,,,
+Table.Column,tot_vacant_units,integer,,,
+Table.Column,tot_vacant_units_m90,integer,,,
+Table.Column,renter_occp_hu,integer,,,
+Table.Column,renter_occp_hu_m90,integer,,,
+Table.Column,owner_occp_hu,integer,,,
+Table.Column,owner_occp_hu_m90,integer,,,
+Table.Column,single_unit,integer,,,
+Table.Column,single_unit_m90,integer,,,
+Table.Column,mlt_u2_9_strc,integer,,,
+Table.Column,mlt_u2_9_strc_m90,integer,,,
+Table.Column,mlt_u10p,integer,,,
+Table.Column,mlt_u10p_m90,integer,,,
+Table.Column,mobile_homes,integer,,,
+Table.Column,mobile_homes_m90,integer,,,
+Table.Column,crowd_occp_u,integer,,,
+Table.Column,crowd_occp_u_m90,integer,,,
+Table.Column,occp_u_no_ph_srvc,integer,,,
+Table.Column,occp_u_no_ph_srvc_m90,integer,,,
+Table.Column,no_plumb,integer,,,
+Table.Column,no_plumb_m90,integer,,,
+Table.Column,recent_built_hu,integer,,,
+Table.Column,recent_built_hu_m90,integer,,,
+Table.Column,med_house_value,integer,,,
+Table.Column,med_house_value_m90,integer,,,
+Table.Column,aggr_house_value,integer,,,
+Table.Column,aggr_house_value_m90,integer,,,
+Table.Column,low_response_score,number,,,
+Table.Column,pct_males,number,,,
+Table.Column,pct_males_m90,number,,,
+Table.Column,pct_females,number,,,
+Table.Column,pct_females_m90,number,,,
+Table.Column,pct_pop_under_5,number,,,
+Table.Column,pct_pop_under_5_m90,number,,,
+Table.Column,pct_pop_5_17,number,,,
+Table.Column,pct_pop_5_17_m90,number,,,
+Table.Column,pct_pop_18_24,number,,,
+Table.Column,pct_pop_18_24_m90,number,,,
+Table.Column,pct_pop_25_44,number,,,
+Table.Column,pct_pop_25_44_m90,number,,,
+Table.Column,pct_pop_45_64,number,,,
+Table.Column,pct_pop_45_64_m90,number,,,
+Table.Column,pct_pop_65plus,number,,,
+Table.Column,pct_pop_65plus_m90,number,,,
+Table.Column,pct_hispanic,number,,,
+Table.Column,pct_hispanic_m90,number,,,
+Table.Column,pct_nh_white_alone,number,,,
+Table.Column,pct_nh_white_alone_m90,number,,,
+Table.Column,pct_nh_blk_alone,number,,,
+Table.Column,pct_nh_blk_alone_m90,number,,,
+Table.Column,pct_nh_aian_alone,number,,,
+Table.Column,pct_nh_aian_alone_m90,number,,,
+Table.Column,pct_nh_asian_alone,number,,,
+Table.Column,pct_nh_asian_alone_m90,number,,,
+Table.Column,pct_nh_nhopi_alone,number,,,
+Table.Column,pct_nh_nhopi_alone_m90,number,,,
+Table.Column,pct_nh_sor_alone,number,,,
+Table.Column,pct_nh_sor_alone_m90,number,,,
+Table.Column,pct_pop_5yrs_over,number,,,
+Table.Column,pct_pop_5yrs_over_m90,number,,,
+Table.Column,pct_othr_lang,number,,,
+Table.Column,pct_othr_lang_m90,number,,,
+Table.Column,pct_age5p_only_eng,number,,,
+Table.Column,pct_age5p_only_eng_m90,number,,,
+Table.Column,pct_age5p_spanish,number,,,
+Table.Column,pct_age5p_spanish_m90,number,,,
+Table.Column,pct_age5p_french,number,,,
+Table.Column,pct_age5p_french_m90,number,,,
+Table.Column,pct_age5p_german,number,,,
+Table.Column,pct_age5p_german_m90,number,,,
+Table.Column,pct_age5p_russian,number,,,
+Table.Column,pct_age5p_russian_m90,number,,,
+Table.Column,pct_age5p_otheuro,number,,,
+Table.Column,pct_age5p_otheuro_m90,number,,,
+Table.Column,pct_age5p_korean,number,,,
+Table.Column,pct_age5p_korean_m90,number,,,
+Table.Column,pct_age5p_chinese,number,,,
+Table.Column,pct_age5p_chinese_m90,number,,,
+Table.Column,pct_age5p_vietnames,number,,,
+Table.Column,pct_age5p_vietnames_m90,number,,,
+Table.Column,pct_age5p_tagalog,number,,,
+Table.Column,pct_age5p_tagalog_m90,number,,,
+Table.Column,pct_age5p_othasian,number,,,
+Table.Column,pct_age5p_othasian_m90,number,,,
+Table.Column,pct_age5p_arabic,number,,,
+Table.Column,pct_age5p_arabic_m90,number,,,
+Table.Column,pct_age5p_othunsp,number,,,
+Table.Column,pct_age5p_othunsp_m90,number,,,
+Table.Column,pct_pop_25yrs_over,number,,,
+Table.Column,pct_pop_25yrs_over_m90,number,,,
+Table.Column,pct_not_hs_grad,number,,,
+Table.Column,pct_not_hs_grad_m90,number,,,
+Table.Column,pct_college,number,,,
+Table.Column,pct_college_m90,number,,,
+Table.Column,pct_pov_univ,number,,,
+Table.Column,pct_pov_univ_m90,number,,,
+Table.Column,pct_prs_blw_pov_lev,number,,,
+Table.Column,pct_prs_blw_pov_lev_m90,number,,,
+Table.Column,pct_one_health_ins,number,,,
+Table.Column,pct_one_health_ins_m90,number,,,
+Table.Column,pct_twophealthins,number,,,
+Table.Column,pct_twophealthins_m90,number,,,
+Table.Column,pct_no_health_ins,number,,,
+Table.Column,pct_no_health_ins_m90,number,,,
+Table.Column,pct_civ_emp_16p,number,,,
+Table.Column,pct_civ_emp_16p_m90,number,,,
+Table.Column,pct_civ_unemp_16p,number,,,
+Table.Column,pct_civ_unemp_16p_m90,number,,,
+Table.Column,pct_civ_emp_16_24,number,,,
+Table.Column,pct_civ_emp_16_24_m90,number,,,
+Table.Column,pct_civ_unemp_16_24,number,,,
+Table.Column,pct_civ_unemp_16_24_m90,number,,,
+Table.Column,pct_civ_emp_25_44,number,,,
+Table.Column,pct_civ_emp_25_44_m90,number,,,
+Table.Column,pct_civ_unemp_25_44,number,,,
+Table.Column,pct_civ_unemp_25_44_m90,number,,,
+Table.Column,pct_civ_emp_45_64,number,,,
+Table.Column,pct_civ_emp_45_64_m90,number,,,
+Table.Column,pct_civ_unemp_45_64,number,,,
+Table.Column,pct_civ_unemp_45_64_m90,number,,,
+Table.Column,pct_pop_disabled,number,,,
+Table.Column,pct_pop_disabled_m90,number,,,
+Table.Column,pct_pop_1yr_over,number,,,
+Table.Column,pct_pop_1yr_over_m90,number,,,
+Table.Column,pct_diff_hu_1yr_ago,number,,,
+Table.Column,pct_diff_hu_1yr_ago_m90,number,,,
+Table.Column,pct_born_us,number,,,
+Table.Column,pct_born_us_m90,number,,,
+Table.Column,pct_born_foreign,number,,,
+Table.Column,pct_born_foreign_m90,number,,,
+Table.Column,pct_us_cit_nat,number,,,
+Table.Column,pct_us_cit_nat_m90,number,,,
+Table.Column,pct_non_us_cit,number,,,
+Table.Column,pct_non_us_cit_m90,number,,,
+Table.Column,pct_eng_vw_span,number,,,
+Table.Column,pct_eng_vw_span_m90,number,,,
+Table.Column,pct_eng_vw_indoeuro,number,,,
+Table.Column,pct_eng_vw_indoeuro_m90,number,,,
+Table.Column,pct_eng_vw_api,number,,,
+Table.Column,pct_eng_vw_api_m90,number,,,
+Table.Column,pct_eng_vw_other,number,,,
+Table.Column,pct_eng_vw_other_m90,number,,,
+Table.Column,pct_eng_vw,number,,,
+Table.Column,pct_eng_vw_m90,number,,,
+Table.Column,pct_rel_family_hhd,number,,,
+Table.Column,pct_rel_family_hhd_m90,number,,,
+Table.Column,pct_mrdcple_hhd,number,,,
+Table.Column,pct_mrdcple_hhd_m90,number,,,
+Table.Column,pct_not_mrdcple_hhd,number,,,
+Table.Column,pct_not_mrdcple_hhd_m90,number,,,
+Table.Column,pct_female_no_hb,number,,,
+Table.Column,pct_female_no_hb_m90,number,,,
+Table.Column,pct_nonfamily_hhd,number,,,
+Table.Column,pct_nonfamily_hhd_m90,number,,,
+Table.Column,pct_sngl_prns_hhd,number,,,
+Table.Column,pct_sngl_prns_hhd_m90,number,,,
+Table.Column,pct_hhd_ppl_und_18,number,,,
+Table.Column,pct_hhd_ppl_und_18_m90,number,,,
+Table.Column,avg_tot_prns_in_hhd,number,,,
+Table.Column,avg_tot_prns_in_hhd_m90,number,,,
+Table.Column,pct_rel_under_6,number,,,
+Table.Column,pct_rel_under_6_m90,number,,,
+Table.Column,pct_hhd_moved_in,number,,,
+Table.Column,pct_hhd_moved_in_m90,number,,,
+Table.Column,pct_pub_asst_inc,number,,,
+Table.Column,pct_pub_asst_inc_m90,number,,,
+Table.Column,avg_agg_hh_inc,integer,,,
+Table.Column,avg_agg_hh_inc_m90,integer,,,
+Table.Column,pct_tot_occp_units,number,,,
+Table.Column,pct_tot_occp_units_m90,number,,,
+Table.Column,pct_vacant_units,number,,,
+Table.Column,pct_vacant_units_m90,number,,,
+Table.Column,pct_renter_occp_hu,number,,,
+Table.Column,pct_renter_occp_hu_m90,number,,,
+Table.Column,pct_owner_occp_hu,number,,,
+Table.Column,pct_owner_occp_hu_m90,number,,,
+Table.Column,pct_single_unit,number,,,
+Table.Column,pct_single_unit_m90,number,,,
+Table.Column,pct_mlt_u2_9_strc,number,,,
+Table.Column,pct_mlt_u2_9_strc_m90,number,,,
+Table.Column,pct_mlt_u10p,number,,,
+Table.Column,pct_mlt_u10p_m90,number,,,
+Table.Column,pct_mobile_homes,number,,,
+Table.Column,pct_mobile_homes_m90,number,,,
+Table.Column,pct_crowd_occp_u,number,,,
+Table.Column,pct_crowd_occp_u_m90,number,,,
+Table.Column,pct_no_ph_srvc,number,,,
+Table.Column,pct_no_ph_srvc_m90,number,,,
+Table.Column,pct_no_plumb,number,,,
+Table.Column,pct_no_plumb_m90,number,,,
+Table.Column,pct_recent_built_hu,number,,,
+Table.Column,pct_recent_built_hu_m90,number,,,
+Table.Column,avg_agg_house_value,integer,,,
+Table.Column,avg_agg_house_value_m90,integer,,,
+Table,cen10_pdb,,,,
+Table.Column,geoid,string,,,
+Table.Column,flag,string,,,
+Table.Column,land_area,number,,,
+Table.Column,aian_land,integer,,,
+Table.Column,urbanized_area_pop,integer,,,
+Table.Column,urban_cluster_pop,integer,,,
+Table.Column,rural_pop,integer,,,
+Table.Column,tot_population,integer,,,
+Table.Column,males,integer,,,
+Table.Column,females,integer,,,
+Table.Column,pop_under_5,integer,,,
+Table.Column,pop_5_17,integer,,,
+Table.Column,pop_18_24,integer,,,
+Table.Column,pop_25_44,integer,,,
+Table.Column,pop_45_64,integer,,,
+Table.Column,pop_65plus,integer,,,
+Table.Column,tot_gq,integer,,,
+Table.Column,inst_gq,integer,,,
+Table.Column,non_inst_gq,integer,,,
+Table.Column,hispanic,integer,,,
+Table.Column,nh_white_alone,integer,,,
+Table.Column,nh_blk_alone,integer,,,
+Table.Column,nh_aian_alone,integer,,,
+Table.Column,nh_asian_alone,integer,,,
+Table.Column,nh_nhopi_alone,integer,,,
+Table.Column,nh_sor_alone,integer,,,
+Table.Column,rel_family_hhd,integer,,,
+Table.Column,mrdcple_fmly_hhd,integer,,,
+Table.Column,not_mrdcple_hhd,integer,,,
+Table.Column,female_no_hb,integer,,,
+Table.Column,nonfamily_hhd,integer,,,
+Table.Column,sngl_prns_hhd,integer,,,
+Table.Column,hhd_ppl_und_18,integer,,,
+Table.Column,tot_prns_in_hhd,integer,,,
+Table.Column,rel_child_under_6,integer,,,
+Table.Column,tot_housing_units,integer,,,
+Table.Column,tot_occp_units,integer,,,
+Table.Column,tot_vacant_units,integer,,,
+Table.Column,renter_occp_hu,integer,,,
+Table.Column,owner_occp_hu,integer,,,
+Table.Column,mailback_area_count,integer,,,
+Table.Column,tea_mail_out_mail_back,integer,,,
+Table.Column,tea_update_leave,string,,,
+Table.Column,census_mail_returns,integer,,,
+Table.Column,vacants,integer,,,
+Table.Column,deletes,integer,,,
+Table.Column,census_uaa,integer,,,
+Table.Column,valid_mailback_count,integer,,,
+Table.Column,frst_frms,integer,,,
+Table.Column,rplcmnt_frms,integer,,,
+Table.Column,bilq_mailout_count,string,,,
+Table.Column,bilq_frms,string,,,
+Table.Column,mail_return_rate,number,,,
+Table.Column,low_response_score,number,,,
+Table.Column,pct_urbanized_area_pop,number,,,
+Table.Column,pct_urban_cluster_pop,integer,,,
+Table.Column,pct_rural_pop,number,,,
+Table.Column,pct_males,number,,,
+Table.Column,pct_females,number,,,
+Table.Column,pct_pop_under_5,number,,,
+Table.Column,pct_pop_5_17,number,,,
+Table.Column,pct_pop_18_24,number,,,
+Table.Column,pct_pop_25_44,number,,,
+Table.Column,pct_pop_45_64,number,,,
+Table.Column,pct_pop_65plus,number,,,
+Table.Column,pct_tot_gq,number,,,
+Table.Column,pct_inst_gq,number,,,
+Table.Column,pct_non_inst_gq,number,,,
+Table.Column,pct_hispanic,number,,,
+Table.Column,pct_nh_white_alone,number,,,
+Table.Column,pct_nh_blk_alone,number,,,
+Table.Column,pct_nh_aian_alone,number,,,
+Table.Column,pct_nh_asian_alone,number,,,
+Table.Column,pct_nh_nhopi_alone,number,,,
+Table.Column,pct_nh_sor_alone,number,,,
+Table.Column,pct_rel_family_hhd,number,,,
+Table.Column,pct_mrdcple_hhd,number,,,
+Table.Column,pct_not_mrdcple_hhd,number,,,
+Table.Column,pct_female_no_hb,number,,,
+Table.Column,pct_nonfamily_hhd,number,,,
+Table.Column,pct_sngl_prns_hhd,number,,,
+Table.Column,pct_hhd_ppl_und_18,number,,,
+Table.Column,avg_tot_prns_in_hhd,number,,,
+Table.Column,pct_rel_under_6,number,,,
+Table.Column,pct_tot_occp_units,number,,,
+Table.Column,pct_vacant_units,number,,,
+Table.Column,pct_renter_occp_hu,number,,,
+Table.Column,pct_owner_occp_hu,number,,,
+Table.Column,pct_tea_mailoutmailback,number,,,
+Table.Column,pct_tea_update_leave,string,,,
+Table.Column,pct_census_mail_returns,number,,,
+Table.Column,pct_vacants,number,,,
+Table.Column,pct_deletes,number,,,
+Table.Column,pct_census_uaa,number,,,
+Table.Column,pct_mailback_count,number,,,
+Table.Column,pct_frst_frms,number,,,
+Table.Column,pct_rplcmnt_frms,number,,,
+Table.Column,pct_bilq_mailout_count,string,,,

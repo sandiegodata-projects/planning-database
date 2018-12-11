@@ -3,14 +3,14 @@ Title,County Planning Database
 Description,A collection of data for demographics and housing from the Census planning
 Description,"database. Files are broken into counties, for San Diego and Los Angeles"
 Identifier,faecc038-4f5e-4524-8000-4b218b8a46bf
-Name,sandiegodata.org-planning-tracts-6
+Name,sandiegodata.org-planning-tracts-7
 Dataset,planning
 Origin,sandiegodata.org
 Grain,tracts
-Version,6
+Version,7
 Group,planning-project
 Created,2018-09-06T14:39:53
-Modified,2018-10-15T20:23:05
+Modified,2018-12-10T23:57:51
 Issued,2018-09-21T05:15:22
 Ckanid,98027770-32e6-41ef-a72d-dd1b77c7f18e
 Giturl,https://github.com/sandiegodata/planning-database.git
