@@ -36,6 +36,13 @@ codes.
 Additional data, such as census demographics or crime counts, are aggregated to
 the greographic region, and given the same geoids as in the index files, allowing users to easily link a data file to an index file. THen users can either report statistics for the regions, or create thematic maps. 
 
+### Future Datasets and Indicators
+
+There are several indicator projects in San Diego that need help finding and processing data, including the Healthy Food Access working group of the [San Diego Food System Alliance](http://www.sdfsa.org/) and the [San Diego Promise Zone](https://www.sandiego.gov/economic-development/sdpromisezone). Both projects have indicataor lists:
+
+* [Health Food Access Indicators](http://planning.sandiegodata.org/documents/Healthy%20Food%20Indicators.xlsx)
+* [Promise Zone Indicators](https://www.sandiego.gov/sites/default/files/san_diego_promise_zone_data_indicators.pdf)
+
 ## Using The Database
 
 The easiest way to get started exploring the database is to use QGIS to make maps. See our [Getting Started Tutorial for QGIS for detailed instructions.](https://github.com/sandiegodata/planning-database/wiki/Get-Started-with-QGIS) 
