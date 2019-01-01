@@ -1,5 +1,4 @@
-from metapack.rowgenerator import PandasDataframeSource
-from metapack import get_cache
+
 
 def link_code(type, code):
     return "{}-{}".format(type, code).lower()
@@ -21,10 +20,8 @@ def prepare_tracts(resource, doc, env, *args, **kwargs):
 
     #tracts['geoid'] = tracts.geoid.apply( lambda v: str(Tract.parse(str(v).zfill(11)).convert(AcsGeoid)) )
 
-
     return tracts.reset_index().sort_values('geoid')
 
-    
 
 def generate_tracts_boundaries(resource, doc, env, *args, **kwargs):
     
@@ -32,8 +29,8 @@ def generate_tracts_boundaries(resource, doc, env, *args, **kwargs):
 
     tracts = prepare_tracts(resource, doc, env, *args, **kwargs)
     
-    yield from PandasDataframeSource('<df>',tracts[['geoid', 'geometry']] , get_cache())
-
+    return tracts[['geoid', 'geometry']]
+  
 
 def generate_tracts(resource, doc, env, *args, **kwargs):
     
@@ -41,13 +38,16 @@ def generate_tracts(resource, doc, env, *args, **kwargs):
 
     tracts = prepare_tracts(resource, doc, env, *args, **kwargs)
 
+    # Convert to NAD83 / California zone 6, which is in units of 
+    # meters, so the area calculateion is in square meters. 
+    tracts = tracts.to_crs({'init':'EPSG:26946'})
+    
+    tracts['area'] = tracts.area.astype(int)
     
     columns = list(tracts.columns)
     columns.remove('geometry')
-    
 
-    yield from PandasDataframeSource('<df>',tracts[columns], get_cache())
-
+    return tracts[columns]
 
 
 def generate_boundaries(resource, doc, env, *args, **kwargs):
@@ -158,4 +158,4 @@ def tract_links(resource, doc, env, *args, **kwargs):
     _7.replace('','NA',inplace=True)
 
 
-    yield from PandasDataframeSource('<df>',_7, get_cache())
+    return _7

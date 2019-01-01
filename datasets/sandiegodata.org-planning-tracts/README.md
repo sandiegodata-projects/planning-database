@@ -40,3 +40,5 @@ After linking in the communities, you can also use the [community id columns](ht
 
 2. First Release
 3. Clean more currency columns
+8. Extended schema metadata. 
+9. Added 'group' to metadata. 

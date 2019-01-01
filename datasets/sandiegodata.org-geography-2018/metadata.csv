@@ -1,32 +1,32 @@
-Declare,metatab-latest,,,
-Title,Community and City and Tract Boundaries in San Diego County,,,
-Description,"Combines  geographic boundary files for communities, cities and tracts in San",,,
-Description,Diego County.,,,
-Identifier,ff738c99-8676-4807-8d01-eed39291df38,,,
-Name,sandiegodata.org-geography-2018-1,,,
-Dataset,geography,,,
-Origin,sandiegodata.org,,,
-Time,2018,,,
-Version,08/28/18 02:26 AM,,,
-Group,geography,,,
-Group,infrastructure,,,
-Group,planning-project,,,
-Created,2018-08-28T02:26:59,,,
-Modified,2018-12-10T20:33:21,,,
-Issued,2018-09-15T00:33:06,,,
-Ckanid,29042250-ae46-4e8f-bf89-cb6776e6275c,,,
-Giturl,https://github.com/sandiegodata/planning-database.git,,,
-,,,,
+Declare,metatab-latest
+Title,Community and City and Tract Boundaries in San Diego County
+Description,"Combines  geographic boundary files for communities, cities and tracts in San"
+Description,Diego County.
+Identifier,ff738c99-8676-4807-8d01-eed39291df38
+Name,sandiegodata.org-geography-2018-9
+Dataset,geography
+Origin,sandiegodata.org
+Time,2018
+Version,9
+Group,geography
+Group,infrastructure
+Group,planning-project
+Created,2018-08-28T02:26:59
+Modified,2019-01-01T01:11:47
+Issued,2018-09-15T00:33:06
+Ckanid,29042250-ae46-4e8f-bf89-cb6776e6275c
+Giturl,https://github.com/sandiegodata/planning-database.git
+""
 Section,Contacts,Email,Organization,Url
 Wrangler,Eric Busboom,eric@civicknowledge.com,Civic Knowledge,http://civicknowledge.com
 Publisher,San Diego Regional Data Library,eric@sandiegodata.org,San Diego Regional Data Library,http://sandieogdata.org
-,,,,
+""
 Section,Documentation,Title,Description,
 Documentation,file:README.md,README,,
 Documentation,doc/Community_Plan_SD.pdf,San Diego City Community Shapefile Documentation,,
 Documentation,doc/Community_Plan_CN.pdf,San Diego County Community Shapefile Documentation,,
 Documentation,doc/Municipal_Boundaries.pdf,City Boundary Shapefile Documentation,,
-,,,,
+""
 Section,References,Name,Description,
 Reference,censusgeo://2016/5/CA/140,california_tracts,Tract boundary shapes,
 Reference,file:data/community-acronyms.csv,acronyms,Acronyms for communities,
@@ -34,13 +34,13 @@ Reference,shape+file:data/Promise_Zone_SD.zip,promise_zone,Promise zone boundary
 Reference,shape+file:data/Municipal_Boundaries.zip,cities,Converted source of boundaries for cities in San  Diego county,
 Reference,shape+file:data/Community_Plan_CN.ZIP,county_communities,Converted source of boundaries for communities in unincorporated  San  Diego county,
 Reference,shape+file:data/Community_Plan_SD.zip,sd_communities,Converted source of boundaries for communities in the city of  San  Diego.,
-,,,,
+""
 Section,Resources,Name,Description,
 Datafile,python:pylib#generate_tracts,tracts,Tract census information,
 Datafile,python:pylib#tract_links,tract_communities,"Link between tracts and cities, communities and county regions, with one record per tract. No geometry.",
 Datafile,python:pylib#generate_tracts_boundaries,tract_boundaries,Tract boundary shapes,
 Datafile,python:pylib#generate_boundaries,community_boundaries,Boundary shapes for all communities and cities combined,
-,,,,
+""
 Section,Schema,DataType,Description,
 Table,tracts,,,
 Table.Column,geoid,string,"Tract geoid, ACS format",
