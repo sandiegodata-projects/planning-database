@@ -40,10 +40,9 @@ def generate_tracts(resource, doc, env, *args, **kwargs):
 
     # Convert to NAD83 / California zone 6, which is in units of 
     # meters, so the area calculateion is in square meters. 
-    tracts = tracts.to_crs({'init':'EPSG:26946'})
+    # tracts = tracts.to_crs({'init':'EPSG:26946'})
     
-    tracts['area'] = tracts.area.astype(int)
-    
+
     columns = list(tracts.columns)
     columns.remove('geometry')
 

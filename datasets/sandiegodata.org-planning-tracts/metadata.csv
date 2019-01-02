@@ -1,37 +1,37 @@
-Declare,metatab-latest
-Title,County Planning Database
-Description,A collection of data for demographics and housing from the Census planning
-Description,"database. Files are broken into counties, for San Diego and Los Angeles"
-Identifier,faecc038-4f5e-4524-8000-4b218b8a46bf
-Name,sandiegodata.org-planning-tracts-9
-Dataset,planning
-Origin,sandiegodata.org
-Grain,tracts
-Version,9
-Group,planning-project
-Created,2018-09-06T14:39:53
-Modified,2018-12-15T01:14:43
-Issued,2018-09-21T05:15:22
-Ckanid,98027770-32e6-41ef-a72d-dd1b77c7f18e
-Giturl,https://github.com/sandiegodata/planning-database.git
-""
+Declare,metatab-latest,,,,,,,,,
+Title,County Planning Database,,,,,,,,,
+Description,A collection of data for demographics and housing from the Census planning,,,,,,,,,
+Description,"database. Files are broken into counties, for San Diego and Los Angeles",,,,,,,,,
+Identifier,faecc038-4f5e-4524-8000-4b218b8a46bf,,,,,,,,,
+Name,sandiegodata.org-planning-tracts-9,,,,,,,,,
+Dataset,planning,,,,,,,,,
+Origin,sandiegodata.org,,,,,,,,,
+Grain,tracts,,,,,,,,,
+Version,9,,,,,,,,,
+Group,planning-project,,,,,,,,,
+Created,2018-09-06T14:39:53,,,,,,,,,
+Modified,2018-12-15T01:14:43,,,,,,,,,
+Issued,2018-09-21T05:15:22,,,,,,,,,
+Ckanid,98027770-32e6-41ef-a72d-dd1b77c7f18e,,,,,,,,,
+Giturl,https://github.com/sandiegodata/planning-database.git,,,,,,,,,
+,,,,,,,,,,
 Section,Contacts,Email,Organization,Url,,,,,,
 Wrangler,Eric Busboom,eric@civicknowledge.com,Civic Knowledge,http://civicknowledge.com,,,,,,
-""
+,,,,,,,,,,
 Section,Documentation,Title,Description,,,,,,,
 Documentation,file:README.md,README,,,,,,,,
 Homepage,https://www.census.gov/research/data/planning_database/,Home page,,,,,,,,
 Documentation,https://www.census.gov/research/data/planning_database/2018/docs/2018_Tract_PDB_Documentation_V4.pdf,Tract PDB Documentation,Primary documentation and data dictionary,,,,,,,
-""
+,,,,,,,,,,
 Section,References,Name,Description,,,,,,,
 Reference,https://www.census.gov/research/data/planning_database/2018/docs/pdb2018trv4_us.zip#encoding=latin1,census_planning_database,Source file for the planning database.,,,,,,,
-Reference,metapack+http://library.metatab.org/sandiegodata.org-communities-2018-5.zip#tract_links,sd_communities,Links communities to tracts,,,,,,,
-Reference,metapack+http://library.metatab.org/sandiegodata.org-communities-2018-5.zip#tracts,sd_tracts,TRACT BOUNDARIES,,,,,,,
-""
+Reference,metapack+http://library.metatab.org/sandiegodata.org-geography-2018.csv#tract_links,sd_communities,Links communities to tracts,,,,,,,
+Reference,metapack+http://library.metatab.org/sandiegodata.org-geography-2018.csv#tracts,sd_tracts,TRACT BOUNDARIES,,,,,,,
+,,,,,,,,,,
 Section,Resources,Name,Description,State,County,schema,,,,
 Datafile,python:pylib#extract_county,planning_db_sd,San Diego county planning database tracts,6,73,planning_db,,,,
 Datafile,python:pylib#extract_county,planning_db_la,Los Angeles county planning database tracts,6,37,planning_db,,,,
-""
+,,,,,,,,,,
 Section,Schema,DataType,AltName,Label,Description,UnitLevel,Source,Denominator Note,VariableNumber,Group
 Table,planning_db,,,,,,,,,
 Table.Column,geoid,string,,Census Tract: 6-digit code,"Subdivision of a County or statistically equivalent entity (0 to over 25,000 people per Tract with an average size of 4,200)",,Census geography,,6,geography
