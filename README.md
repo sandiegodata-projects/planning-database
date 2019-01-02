@@ -40,8 +40,8 @@ the greographic region, and given the same geoids as in the index files, allowin
 
 There are several indicator projects in San Diego that need help finding and processing data, including the Healthy Food Access working group of the [San Diego Food System Alliance](http://www.sdfsa.org/) and the [San Diego Promise Zone](https://www.sandiego.gov/economic-development/sdpromisezone). Both projects have indicataor lists:
 
-* [Health Food Access Indicators](http://planning.sandiegodata.org/documents/Healthy%20Food%20Indicators.xlsx)
-* [Promise Zone Indicators](https://www.sandiego.gov/sites/default/files/san_diego_promise_zone_data_indicators.pdf)
+* [Health Food Access Indicators](https://docs.google.com/spreadsheets/d/1h3NaVsVUVcSN6O80cviOdsSxAnMd81KXb8B414JEi3U)
+* [Promise Zone Indicators](https://docs.google.com/spreadsheets/d/1__60iJN_tibEIwkXKCYueSiLaMmpnDCQGaFVJ7i8WsA)
 
 ## Using The Database
 
