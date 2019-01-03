@@ -71,18 +71,36 @@ def mk_city_geoid_map(pkg):
 
     return d
 
-def generate_boundaries(resource, doc, env, *args, **kwargs):
+combined_boundaries_header = 'type name name_code city link_code geoid geometry'.split()
+
+from rowgenerators.rowproxy import RowProxy
+class LowerCaseRP(RowProxy):
+
+    def __init__(self, keys):
+        super().__init__([e.lower() for e in keys])
+
+def city_boundaries(resource, doc, env, *args, **kwargs):
     """All cities and communities. Has both San Diego citm and the communities in San Diego"""
-    from rowgenerators.rowproxy import RowProxy
      
     city_geoid_map = mk_city_geoid_map(doc)
+    
+    if not kwargs.get('no_header'):
+        yield combined_boundaries_header
+    
+    for row in doc.reference('cities').iterrowproxy(LowerCaseRP): 
+         
+        geoid = city_geoid_map.get(row.code)
+         
+        if row.code != 'CN':
+            yield ['city', row.name, row.code, row.code, link_code('city',row.code), geoid, row.geometry]
+    
+def county_boundaries(resource, doc, env, *args, **kwargs):
+    """All cities and communities. Has both San Diego citm and the communities in San Diego"""
+    city_geoid_map = mk_city_geoid_map(doc)
 
-    class LowerCaseRP(RowProxy):
-
-        def __init__(self, keys):
-            super().__init__([e.lower() for e in keys])
-     
-    yield 'type name name_code city link_code geoid geometry'.split()
+    
+    if not kwargs.get('no_header'):
+        yield combined_boundaries_header
     
     for row in doc.reference('cities').iterrowproxy(LowerCaseRP): 
          
@@ -90,18 +108,49 @@ def generate_boundaries(resource, doc, env, *args, **kwargs):
          
         if row.code == 'CN':
             yield ['county', row.name, row.code, row.code, link_code('county',row.code), geoid, row.geometry]
-        else:
-            yield ['city', row.name, row.code, row.code, link_code('city',row.code), None, row.geometry]
     
+
+def community_boundaries(resource, doc, env, *args, **kwargs):
+    """Boundaries for San Diego communities"""
+
+    if not kwargs.get('no_header'):
+        yield combined_boundaries_header
+
     for row in doc.reference('sd_communities').iterrowproxy(LowerCaseRP): 
         yield ['sd_community', row.cpname, row.cpcode, 'SD', link_code('sdc',row.cpcode), None, row.geometry]
-        
-    for row in doc.reference('county_communities').iterrowproxy(LowerCaseRP): 
-        yield ['county_community', row.cpasg_labe, row.cpasg, 'CN', link_code('cnc',row.cpasg), None, row.geometry]
-    
+  
+
+def district_boundaries(resource, doc, env, *args, **kwargs):
+    """Boundaries for special districts, such as the Promize Zone"""
+
+    if not kwargs.get('no_header'):
+        yield combined_boundaries_header
+
     for row in doc.reference('promise_zone').iterrowproxy(LowerCaseRP): 
         yield ['sd_district', row.name, None, 'SD', 'promise_zone', None, row.geometry]
     
+def county_communities_boundaries(resource, doc, env, *args, **kwargs):
+    """Boundaries for county communities"""
+
+    if not kwargs.get('no_header'):
+        yield combined_boundaries_header
+    
+    for row in doc.reference('county_communities').iterrowproxy(LowerCaseRP): 
+        yield ['county_community', row.cpasg_labe, row.cpasg, 'CN', link_code('cnc',row.cpasg), None, row.geometry]
+    
+
+
+def generate_boundaries(resource, doc, env, *args, **kwargs):
+    """All cities and communities. Has both San Diego citm and the communities in San Diego"""
+    from rowgenerators.rowproxy import RowProxy
+
+    yield combined_boundaries_header
+    
+    yield from city_boundaries(resource, doc, env, no_header=True)
+    yield from county_boundaries(resource, doc, env, no_header=True)
+    yield from community_boundaries(resource, doc, env, no_header=True)
+    yield from county_communities_boundaries(resource, doc, env, no_header=True)
+    yield from district_boundaries(resource, doc, env, no_header=True)
     
 
 def clean_comm_name(s):
@@ -118,9 +167,8 @@ def tract_links(resource, doc, env, *args, **kwargs):
 
     # First, geo join the tracts into the communities and cities.  
 
-   
 
-    comm = doc.resource('community_boundaries').geoframe()
+    comm = doc.resource('combined_boundaries').geoframe()
     tracts = doc.resource('tracts').dataframe()
 
     tracts['intp'] = tracts.apply(lambda r: Point(float(r.intptlon), float(r.intptlat)), axis=1)
