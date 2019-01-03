@@ -2,6 +2,18 @@
 
 This file is a conversion of the BLS Local Area Unemployment (LAUS) file for California. The conversion breaks out parts of the series_id code, and includes a Census ACS geoid for most areas. 
 
+
+## Measure Codes
+
+The ``measure_code`` value indicates the type of measure: 
+
+
+	measure_code	measure_text
+	03				unemployment rate
+	04				unemployment
+	05				employment
+	06				labor force
+
 ## Local Area Unemployment Statistics Series Identifier
 
 The following is a sample format description of the Local Area Unemployment Statistics' series identifier:

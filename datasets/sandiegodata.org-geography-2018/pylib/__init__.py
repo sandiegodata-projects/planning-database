@@ -49,39 +49,66 @@ def generate_tracts(resource, doc, env, *args, **kwargs):
     return tracts[columns]
 
 
+def mk_city_geoid_map(pkg):
+    from shapely.geometry import Point
+    import geopandas as gpd
+
+    places_df = pkg.reference('places').geoframe()
+    places = gpd.GeoDataFrame(places_df, geometry=
+                            [Point(float(x),float(y)) for x,y in zip( places_df.intptlon, places_df.intptlat)],
+                             crs = places_df.crs)
+
+
+    cities = pkg.reference('cities').geoframe().to_crs(places_df.crs)
+
+    t = gpd.sjoin(places, cities[cities.CODE != 'CN'])
+
+    d = t[['CODE','geoid']].set_index('CODE').to_dict()['geoid']
+
+    from geoid.acs import County
+
+    d['CN'] = str(County(6,73))
+
+    return d
+
 def generate_boundaries(resource, doc, env, *args, **kwargs):
     """All cities and communities. Has both San Diego citm and the communities in San Diego"""
     from rowgenerators.rowproxy import RowProxy
      
+    city_geoid_map = mk_city_geoid_map(doc)
 
     class LowerCaseRP(RowProxy):
 
         def __init__(self, keys):
             super().__init__([e.lower() for e in keys])
      
-    yield 'type name name_code city link_code geometry'.split()
+    yield 'type name name_code city link_code geoid geometry'.split()
     
     for row in doc.reference('cities').iterrowproxy(LowerCaseRP): 
          
+        geoid = city_geoid_map.get(row.code)
+         
         if row.code == 'CN':
-            yield ['county', row.name, row.code, row.code, link_code('county',row.code), row.geometry]
+            yield ['county', row.name, row.code, row.code, link_code('county',row.code), geoid, row.geometry]
         else:
-            yield ['city', row.name, row.code, row.code, link_code('city',row.code), row.geometry]
+            yield ['city', row.name, row.code, row.code, link_code('city',row.code), None, row.geometry]
     
     for row in doc.reference('sd_communities').iterrowproxy(LowerCaseRP): 
-        yield ['sd_community', row.cpname, row.cpcode, 'SD', link_code('sdc',row.cpcode), row.geometry]
+        yield ['sd_community', row.cpname, row.cpcode, 'SD', link_code('sdc',row.cpcode), None, row.geometry]
         
     for row in doc.reference('county_communities').iterrowproxy(LowerCaseRP): 
-        yield ['county_community', row.cpasg_labe, row.cpasg, 'CN', link_code('cnc',row.cpasg), row.geometry]
+        yield ['county_community', row.cpasg_labe, row.cpasg, 'CN', link_code('cnc',row.cpasg), None, row.geometry]
     
     for row in doc.reference('promise_zone').iterrowproxy(LowerCaseRP): 
-        yield ['sd_district', row.name, None, 'SD', 'promise_zone', row.geometry]
+        yield ['sd_district', row.name, None, 'SD', 'promise_zone', None, row.geometry]
     
     
 
 def clean_comm_name(s):
     import re
     return re.compile('[^a-zA-Z]').sub('',s.lower())  
+
+
 
 def tract_links(resource, doc, env, *args, **kwargs):
     from metapack.rowgenerator import PandasDataframeSource
@@ -90,6 +117,8 @@ def tract_links(resource, doc, env, *args, **kwargs):
     import geopandas as gpd
 
     # First, geo join the tracts into the communities and cities.  
+
+   
 
     comm = doc.resource('community_boundaries').geoframe()
     tracts = doc.resource('tracts').dataframe()
@@ -104,7 +133,8 @@ def tract_links(resource, doc, env, *args, **kwargs):
 
     columns = [ 'geoid', 'type', 'name', 'name_code', 'city', 'link_code' ]
 
-    tc = tract_community.rename({'name_left':'name'}, axis=1)[columns]
+  
+    tc = tract_community.rename({'name_left':'name', 'geoid_right':'geoid'}, axis=1)[columns]
 
     # Now link everything together. 
 
@@ -122,6 +152,7 @@ def tract_links(resource, doc, env, *args, **kwargs):
 
     _7 = _3.join(_4, rsuffix='_county')\
            .join(_5, rsuffix='_sdc').join(_6, rsuffix='_cnc')
+
 
     _7.columns =\
     [
