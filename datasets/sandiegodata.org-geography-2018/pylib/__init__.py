@@ -158,3 +158,12 @@ def tract_links(resource, doc, env, *args, **kwargs):
 
 
     return _7
+
+def sd_county_boundary(resource, doc, env, *args, **kwargs):
+    
+    for row in doc.reference('county_boundaries').iterdict:
+        if int(row['statefp']) == 6 and int(row['countyfp']) == 73:
+            yield list(row.keys())
+            yield list(row.values())
+            break
+    

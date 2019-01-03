@@ -37,3 +37,9 @@ The ``tracts_all_regions`` dataset may have more than one row for each tract;
 the tract will appear once for each of the four region types that it is in, but
 no tract is in more than 2 regions. For instance, a tract in a community of San
 Diego will appear twice, once for the community, and once for the City.
+
+
+# Versions
+
+10. Added county outline
+
