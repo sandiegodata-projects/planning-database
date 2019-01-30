@@ -11,29 +11,34 @@ Grain,
 Variant,
 Version,1
 Created,2018-12-07T18:19:46
-Modified,2018-12-23T00:10:42
+Modified,2019-01-03T22:57:17
+Issued,2019-01-03T22:57:07
+Distribution,http://library.metatab.org/sandiegodata.org-planning-1/metadata.csv
+Distribution,http://library.metatab.org/sandiegodata.org-planning-1.zip
+Distribution,http://library.metatab.org/sandiegodata.org-planning-1.csv
+Ckanid,ede16ab0-f28b-43fc-8666-ad89fbc8373f
 Giturl,https://github.com/sandiegodata/planning-database.git
 ""
 Section,Contacts,Email,Organization,,,Url
 Wrangler,Eric Busboom,eric@civicknowledge.com,Civic Knowledge,,,http://civicknowledge.com
 ""
 Section,Documentation,Title,Description,,,
-Documentation,file:README.md,README,,,,
+Documentation,http://library.metatab.org/sandiegodata.org-planning-1/README.md,README,,,,
 ""
 Section,References,Name,Description,,,
 Reference,index:sandiegodata.org-planning-tracts#planning_db_sd,planning_db_sd,San Diego county planning database tracts,,,
 ""
 Section,Resources,Name,Description,,,
-Datafile,metapack+http://library.metatab.org/sandiegodata.org-geography-2018-1.csv#tracts,tracts,Tract information,,,
-Datafile,metapack+http://library.metatab.org/sandiegodata.org-geography-2018-1.csv#tract_communities,tract_communities,Link tracts to communities and cities,,,
-Datafile,metapack+http://library.metatab.org/sandiegodata.org-geography-2018-1.csv#tract_boundaries,tract_boundaries,Geographic boundaries for tracts,,,
-Datafile,metapack+http://library.metatab.org/sandiegodata.org-geography-2018-1.csv#community_boundaries,community_boundaries,Geographic boundaries for communities and cities,,,
-Datafile,metapack+http://library.metatab.org/sandiegodata.org-diabetes_sae-1.csv#tract_diabetes,tract_diabetes,,,,
-Datafile,metapack+http://library.metatab.org/healthyplacesindex.org-healthy_places_index-san_diego-4.csv#hpi,hpi,Healthy places index,,,
-Datafile,metapack+http://library.metatab.org/sangis.org-business_sites-1.csv#business_sites,business_sites,Point locations for businesses,,,
-Datafile,metapack+http://library.metatab.org/sangis.org-business_sites-1.csv#tract_counts_rows,business_tract_counts,Business counts linked to tracts,,,
-Datafile,python:pylib#select_acs,acs_pdb,"Planning database for tracts in SD County, ACS columns",,,
-Datafile,python:pylib#select_cen10,cen10_pdb,"Planning database for tracts in SD County, Census 2010 columns",,,
+Datafile,http://library.metatab.org/sandiegodata.org-planning-1/data/tracts.csv,tracts,Tract information,,,
+Datafile,http://library.metatab.org/sandiegodata.org-planning-1/data/tract_communities.csv,tract_communities,Link tracts to communities and cities,,,
+Datafile,http://library.metatab.org/sandiegodata.org-planning-1/data/tract_boundaries.csv,tract_boundaries,Geographic boundaries for tracts,,,
+Datafile,http://library.metatab.org/sandiegodata.org-planning-1/data/community_boundaries.csv,community_boundaries,Geographic boundaries for communities and cities,,,
+Datafile,http://library.metatab.org/sandiegodata.org-planning-1/data/tract_diabetes.csv,tract_diabetes,,,,
+Datafile,http://library.metatab.org/sandiegodata.org-planning-1/data/hpi.csv,hpi,Healthy places index,,,
+Datafile,http://library.metatab.org/sandiegodata.org-planning-1/data/business_sites.csv,business_sites,Point locations for businesses,,,
+Datafile,http://library.metatab.org/sandiegodata.org-planning-1/data/business_tract_counts.csv,business_tract_counts,Business counts linked to tracts,,,
+Datafile,http://library.metatab.org/sandiegodata.org-planning-1/data/acs_pdb.csv,acs_pdb,"Planning database for tracts in SD County, ACS columns",,,
+Datafile,http://library.metatab.org/sandiegodata.org-planning-1/data/cen10_pdb.csv,cen10_pdb,"Planning database for tracts in SD County, Census 2010 columns",,,
 ""
 Section,Schema,DataType,Comment,Group,Description,Type
 Table,tracts,,,,,

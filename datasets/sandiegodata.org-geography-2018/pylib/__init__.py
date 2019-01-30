@@ -14,13 +14,14 @@ def prepare_tracts(resource, doc, env, *args, **kwargs):
 
     tracts.drop(columns=['geoid'], inplace=True)
     tracts.index.name = 'geoid'
+    tracts.reset_index(inplace=True)
 
     tracts.columns = [c.lower() for c in tracts.columns]
     tracts = tracts[(tracts.statefp == '06') & (tracts.countyfp == '073')]
 
-    #tracts['geoid'] = tracts.geoid.apply( lambda v: str(Tract.parse(str(v).zfill(11)).convert(AcsGeoid)) )
+    tracts['geoid'] = tracts.geoid.apply( lambda v: str(Tract.parse(str(v).zfill(11)).convert(AcsGeoid)) )
 
-    return tracts.reset_index().sort_values('geoid')
+    return tracts.sort_values('geoid')
 
 
 def generate_tracts_boundaries(resource, doc, env, *args, **kwargs):
@@ -48,18 +49,24 @@ def generate_tracts(resource, doc, env, *args, **kwargs):
 
     return tracts[columns]
 
-
-def mk_city_geoid_map(pkg):
+def places_centroid(pkg):
+    from rowgenerators.generator.shapefile import default_crs
     from shapely.geometry import Point
     import geopandas as gpd
 
-    places_df = pkg.reference('places').geoframe()
+    places_df = pkg.reference('us_places').geoframe().to_crs(default_crs)
     places = gpd.GeoDataFrame(places_df, geometry=
                             [Point(float(x),float(y)) for x,y in zip( places_df.intptlon, places_df.intptlat)],
                              crs = places_df.crs)
 
+    return places
 
-    cities = pkg.reference('cities').geoframe().to_crs(places_df.crs)
+def mk_city_geoid_map(pkg):
+    import geopandas as gpd
+
+    places = places_centroid(pkg)
+
+    cities = pkg.reference('cities').geoframe().to_crs(places.crs)
 
     t = gpd.sjoin(places, cities[cities.CODE != 'CN'])
 
@@ -92,7 +99,7 @@ def city_boundaries(resource, doc, env, *args, **kwargs):
         geoid = city_geoid_map.get(row.code)
          
         if row.code != 'CN':
-            yield ['city', row.name, row.code, row.code, link_code('city',row.code), geoid, row.geometry]
+            yield ['city', row.name.title(), row.code, row.code, link_code('city',row.code), geoid, row.geometry]
     
 def county_boundaries(resource, doc, env, *args, **kwargs):
     """All cities and communities. Has both San Diego citm and the communities in San Diego"""
@@ -117,7 +124,7 @@ def community_boundaries(resource, doc, env, *args, **kwargs):
         yield combined_boundaries_header
 
     for row in doc.reference('sd_communities').iterrowproxy(LowerCaseRP): 
-        yield ['sd_community', row.cpname, row.cpcode, 'SD', link_code('sdc',row.cpcode), None, row.geometry]
+        yield ['sd_community', row.cpname.title(), row.cpcode, 'SD', link_code('sdc',row.cpcode), None, row.geometry]
   
 
 def district_boundaries(resource, doc, env, *args, **kwargs):
@@ -127,7 +134,7 @@ def district_boundaries(resource, doc, env, *args, **kwargs):
         yield combined_boundaries_header
 
     for row in doc.reference('promise_zone').iterrowproxy(LowerCaseRP): 
-        yield ['sd_district', row.name, None, 'SD', 'promise_zone', None, row.geometry]
+        yield ['sd_district', row.name.title(), None, 'SD', 'promise_zone', None, row.geometry]
     
 def county_communities_boundaries(resource, doc, env, *args, **kwargs):
     """Boundaries for county communities"""
@@ -245,4 +252,28 @@ def sd_county_boundary(resource, doc, env, *args, **kwargs):
             yield list(row.keys())
             yield list(row.values())
             break
+    
+def generate_places(resource, doc, env, *args, **kwargs):
+    
+    import geopandas as gpd
+    from rowgenerators.generator.shapefile import default_crs
+
+    county = doc.resource('sd_county_boundary').geoframe().to_crs(default_crs)
+    
+    places = places_centroid(doc)
+    
+    sd_pl = gpd.sjoin(county[['geometry']], places)
+    
+    return sd_pl.drop(columns=['geometry', 'index_right'])
+    
+def place_boundaries(resource, doc, env, *args, **kwargs):
+    
+    from rowgenerators.generator.shapefile import default_crs
+    
+    pl = doc.reference('us_places').geoframe().to_crs(default_crs)
+    
+    sd_places_geoids = generate_places(resource, doc, env)['geoid']
+    
+    return pl[pl.geoid.isin(sd_places_geoids)][['geoid','geometry']]
+        
     

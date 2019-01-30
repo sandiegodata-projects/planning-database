@@ -1,126 +1,129 @@
-Declare,metatab-latest,,,,,,
-Title,California Healthy Places Index,,,,,,
-Description,The HPI provides overall scores and more detailed data on specific policy action,,,,,,
-Description,"areas that shape health, like housing, transportation, education and more.",,,,,,
-Identifier,c2485e3f-2b73-44bf-ae91-15a6de8d407a,,,,,,
-Name,healthyplacesindex.org-healthy_places_index-san_diego-4,,,,,,
-Dataset,healthy_places_index,,,,,,
-Origin,healthyplacesindex.org,,,,,,
-Space,san_diego,,,,,,
-Version,4,,,,,,
-Group,planning-project,,,,,,
-Created,2018-09-12T17:57:27,,,,,,
-Modified,2018-11-14T20:34:49,,,,,,
-Issued,2018-09-14T21:06:36,,,,,,
-Ckanid,850a0022-e5a9-4a3e-90ff-6ff52a88390f,,,,,,
-Giturl,https://github.com/sandiegodata/planning-database.git,,,,,,
-,,,,,,,
+Declare,metatab-latest
+Title,California Healthy Places Index
+Description,The HPI provides overall scores and more detailed data on specific policy action
+Description,"areas that shape health, like housing, transportation, education and more."
+Identifier,c2485e3f-2b73-44bf-ae91-15a6de8d407a
+Name,healthyplacesindex.org-healthy_places_index-san_diego-4
+Dataset,healthy_places_index
+Origin,healthyplacesindex.org
+Space,san_diego
+Version,4
+Group,planning-project
+Created,2018-09-12T17:57:27
+Modified,2019-01-03T22:49:56
+Issued,2019-01-03T22:49:49
+Distribution,http://library.metatab.org/healthyplacesindex.org-healthy_places_index-san_diego-4/metadata.csv
+Distribution,http://library.metatab.org/healthyplacesindex.org-healthy_places_index-san_diego-4.zip
+Distribution,http://library.metatab.org/healthyplacesindex.org-healthy_places_index-san_diego-4.csv
+Ckanid,850a0022-e5a9-4a3e-90ff-6ff52a88390f
+Giturl,https://github.com/sandiegodata/planning-database.git
+""
 Section,Contacts,Email,Organization,Url,,,
 Creator,,PHASoCal@PHI.org,Public Health Alliance of Southern California,https://healthyplacesindex.org/,,,
 Wrangler,Eric Busboom,eric@civicknowledge.com,Civic Knowledge,http://civicknowledge.com,,,
-,,,,,,,
+""
 Section,Documentation,Title,Description,,,,
-Documentation,file:README.md,README,,,,,
+Documentation,http://library.metatab.org/healthyplacesindex.org-healthy_places_index-san_diego-4/README.md,README,,,,,
 Homepage,https://healthyplacesindex.org/,Project homepage,Website for the HPI project,,,,
 Documentation,https://healthyplacesindex.org/wp-content/uploads/2018/07/HPI2Documentation2018-07-08-FINAL.pdf,Main Documentation,Full technical documentation.,,,,
 Note,© 2018 Public Health Alliance of Southern California,,,,,,
 Note,"Permission is hereby granted to use, reproduce, and distribute these materials for noncommercial purposes,including educational,",,,,,,
 Note,"government and community uses, with proper attribution to the Public Health Alliance of Southern California including this copyright notice.",,,,,,
 Note,Use of this publication does not imply endorsement by the Public Health Alliance of Southern California.,,,,,,
-,,,,,,,
+""
 Section,Resources,Name,Description,,,,
-Datafile,https://healthyplacesindex.org/wp-content/uploads/2018/07/HPI-Master-Files-2018-07-08.zip#HPI2_MasterFile_2018-04-04.csv&encoding=latin1,hpi,Healthy Places Index master file,,,,
-,,,,,,,
-Section,Schema,DataType,AltName,transform,Description,Group,Comment
-Table,hpi,,,,,,
-Table.Column,CensusTract,string,geoid,acs_tract,ACS format geoid,geography,
-Table.Column,pop2010,integer,,,total  population of census tract in 2010,demographic,Decennial Census 2010
-Table.Column,pct2010gq,number,,,population in group quarters in 2010,demographic,range 0-100
-Table.Column,City,string,city,,City associated with centroid of census tract,geography,spatially computed field
-Table.Column,ZIP,integer,zip,,5-digit postal zip code,geography,from HDI 1.1
-Table.Column,County_FIPS,integer,county_fips,,4-digit code  of county,geography,leading 0 for state is NOT included
-Table.Column,County_Name,string,county_name,,Name of county,geography,Alameda . . .  Yuba
-Table.Column,UrbanType,string,urbantype,,Census classification of urban type,geography,"urban, urban_cluster, rural"
-Table.Column,hpi2score,number,,,Total score of HPI,hpi,weighted average of policy action area means
-Table.Column,hpi2_pctile_pos,number,,,Percentile ranking of HPI score (positive frame),hpi,0-100 (least-most advantaged)
-Table.Column,hpi2_pctile_neg,number,,,Percentile ranking of HPI score (negative frame),hpi,0-100 (most-least advantaged)
-Table.Column,hpi_top25pct,string,,,Top 25% most advantaged,hpi,"Yes=top 25% (most advantaged), No= bottom 75% (less advantaged)"
-Table.Column,quintiles,integer,,,Quintile of HPI score,hpi,1-5 (most-least advantaged)
-Table.Column,quartiles,integer,,,Quartile of HPI score,hpi,1-4 (most-least advantaged)
-Table.Column,economic,number,,,"Economic policy action area score, summed Z-scores of individual policy action area variables",economy,"Highest value= most advantaged, 0=least"
-Table.Column,economic_pctile,number,,,"Percentile ranking ranking of ""economic"" policy action area z score",economy,0-100 (least-most advantaged)
-Table.Column,education,number,,,"Education score, summed Z-scores of individual policy action area variables",education,"Highest value= most advantaged, 0=least"
-Table.Column,education_pctile,number,,,"Percentile ranking of ""education"" policy action area z score",education,0-100 (least-most advantaged)
-Table.Column,housing,number,,,"Housing policy action area score, summed Z-scores of individual policy action area variables",housing,"Highest value= most advantaged, 0=least"
-Table.Column,houseing_pctile,number,,,"Percentile ranking of ""housing"" policy action area z score",housing,0-100 (least-most advantaged)
-Table.Column,healthcareaccess,number,,,"Healthcare Access policy action area score, z-score of insurance variable",healthcare,"Highest value= most advantaged, 0=least"
-Table.Column,healthcareaccess_pctile,number,,,"Percentile ranking of ""healthcare access"" policy action area z score",healthcare,0-100 (least-most advantaged)
-Table.Column,neighborhood,number,,,"Neighborhood policy action area score, summed Z-scores of individual policy action area variables",neighborhood,"Highest value= most advantaged, 0=least"
-Table.Column,neighborhood_pctile,number,,,"Percentile ranking of ""neighborhood"" policy action area z score",neighborhood,0-100 (least-most advantaged)
-Table.Column,pollution,number,,,"Pollution (""Clean Environment"") policy action area score, summed Z-scores of individual policy action area variables",environment,"Highest value= most advantaged, 0=least"
-Table.Column,pollution_pctile,number,,,"Percentile ranking of ""pollution"" policy action area z score",environment,0-100 (least-most advantaged)
-Table.Column,transportation,number,,,"Transportation policy action area score, summed Z-scores of individual policy action area variables",transportation,"Highest value= most advantaged, 0=least"
-Table.Column,transportation_pctile,number,,,"Percentile ranking of ""transportation"" policy action area z score",transportation,0-100 (least-most advantaged)
-Table.Column,social,number,,,"Social policy action area score, summed Z-scores of individual policy action area variables",neighborhood,"Highest value= most advantaged, 0=least"
-Table.Column,social_pctile,number,,,"Percentile ranking of ""social"" policy action area z score",neighborhood,0-100 (least-most advantaged)
-Table.Column,insured,number,,,Percentage of adults aged 18 to 64 years currently insured,healthcare,0-100 (least-most advantaged)
-Table.Column,insured_pctile,number,,,Percentile ranking of percentage of adults aged 18 to 64 years currently insured,healthcare,0-100 (least-most advantaged)
-Table.Column,uncrowded,number,,,Percentage of households with less or equal to 1 occupant per room,housing,0-100 (least-most advantaged)
-Table.Column,uncrowded_pctile,number,,,Percentile ranking of uncrowded households,housing,0-100 (least-most advantaged)
-Table.Column,homeownership,number,,,Percentage of occupied housing units occupied by property owners,housing,0-100 (least-most advantaged)
-Table.Column,homeownership_pctile,number,,,Percentile ranking of percentage of occupied housing units occupied by property owners,housing,0-100 (least-most advantaged)
-Table.Column,automobile,number,,,Percentage of households with access to an automobile,transportation,0-100 (least-most advantaged)
-Table.Column,automobile_pctile,number,,,Percentile ranking of households with access to an automobile,transportation,0-100 (least-most advantaged)
-Table.Column,commute,number,,,"Percentage of workers (16 years and older) who commute to work by transit, walking, or cycling",transportation,0-100 (least-most advantaged)
-Table.Column,commute_pctile,number,,,"Percentile ranking of percentage of workers (16 years and older) who commute to work by transit, walking, or cycling",transportation,0-100 (least-most advantaged)
-Table.Column,inpreschool,number,,,Percentage of 3 and 4 year olds enrolled in school,education,0-100 (least-most advantaged)
-Table.Column,inpreschool_pctile,number,,,Percentile ranking of 3 and 4 year olds enrolled in school,education,0-100 (least-most advantaged)
-Table.Column,inhighschool,number,,,Percentage of 15-17 year olds enrolled in school,education,0-100 (least-most advantaged)
-Table.Column,inhighschool_pctile,number,,,Percentile ranking of 15-17 year olds enrolled in school,education,0-100 (least-most advantaged)
-Table.Column,bachelorsed,number,,,Percentage of population over age 25 with a bachelor's education or higher,education,0-100 (least-most advantaged)
-Table.Column,bachelorsed_pctile,number,,,Percentile ranking of percentage of population over age 25 with a bachelor's education or higher,education,0-100 (least-most advantaged)
-Table.Column,employed,number,,,Percentage of population aged 25-64 who are employed,employment,0-100 (least-most advantaged)
-Table.Column,employed_pctile,number,,,Percentile ranking of population aged 25-64 who are employed,employment,0-100 (least-most advantaged)
-Table.Column,abovepoverty,number,,,Percent of the population with an income exceeding 200% of federal poverty level,income,0-100 (least-most advantaged)
-Table.Column,abovepoverty_pctile,number,,,Percentile ranking of the population with an income exceeding 200% of federal poverty level,income,0-100 (least-most advantaged)
-Table.Column,income,integer,,,Median annual household income,income,>=0
-Table.Column,income_pctile,number,,,Percentile ranking of median annual household income,income,0-100 (least-most advantaged)
-Table.Column,retail,number,,,"Gross retail, entertainment, and education employment density (jobs/acre) on unprotected land",neighborhood,0-100 (least-most advantaged)
-Table.Column,retail_pctile,number,,,"Percentile ranking of employment density for retail, entertainment, and educational uses",neighborhood,0-100 (least-most advantaged)
-Table.Column,parkaccess,number,,,"Percentage of the population living within a half-mile of a park, beach, or open space greater than 1 acre",neighborhood,0-100 (least-most advantaged)
-Table.Column,parkaccess_pctile,number,,,"Percentile ranking of the population living within a half-mile of a park, beach, or open space greater than 1 acre",neighborhood,0-100 (least-most advantaged)
-Table.Column,treecanopy,number,,,Population-weighted percentage of the census tract area without tree canopy,neighborhood,0-100 (least-most advantaged)
-Table.Column,treecanopy_pctile,number,,,Percentile ranking of population-weighted percentage of the census tract area without tree canopy,neighborhood,0-100 (least-most advantaged)
-Table.Column,alcoffsale,number,,,Percent of Population beyond 1/4 Mile of Off-Sale Alcohol Outlets,neighborhood,0-100 (least-most advantaged)
-Table.Column,alcoffsale_pctile,number,,,Percentile ranking of the opulation within 1/4 Mile of Off-Sale Alcohol Outlets,neighborhood,0-100 (least-most advantaged)
-Table.Column,voting,number,,,Percentage of registered voters voting in the 2012 general election,civic,0-100 (least-most advantaged)
-Table.Column,voting_pctile,number,,,Percentile ranking of registered voters voting in the 2012 general election,civic,0-100 (least-most advantaged)
-Table.Column,ownsevere,number,,,Percent of low income owner households with housing costs exceeding 50% of income,income,0-100 (most-least advantaged)
-Table.Column,ownsevere_pctile,number,,,Percentile ranking of low income owner households with housing costs exceeding 50% of income,income,0-100 (least-most advantaged)
-Table.Column,rentsevere,number,,,Percent of low income renter households with housing costs exceeding 50% of income,income,0-100 (most-least advantaged)
-Table.Column,rentsevere_pctile,number,,,Percentile ranking of low income renter households with housing costs exceeding 50% of income,income,0-100 (least-most advantaged)
-Table.Column,houserepair,number,,,Percent of households with kitchen facilities and plumbing,housing,0-100 (least-most advantaged)
-Table.Column,houserepair_pctile,number,,,Percentile ranking of the households with kitchen facilities and plumbing,housing,0-100 (least-most advantaged)
-Table.Column,twoparents,number,,,Percentage of children in married-couple family households or one parent with unmarried partner family households,,0-100 (least-most advantaged)
-Table.Column,twoparents_pctile,number,,,Percentile ranking of percentage of children in married-couple family households or one parent with unmarried partner family households,,0-100 (least-most advantaged)
-Table.Column,supermkts,number,,,"Percentage of the urban population residing less than 1/2 mile from a supermarket/large grocery store, or the percent of the rural population living less than 1 mile from a supermarket/large grocery store",neighborhood,0-100 (most-least advantaged)
-Table.Column,supermkts_pctile,number,,,"Percentile ranking of percentage of the urban population residing less than 1/2 mile from a supermarket/large grocery store, or the percent of the rural population living less than 1 mile from a supermarket/large grocery store",neighborhood,0-100 (least-most advantaged)
-Table.Column,ozone,number,,,"Mean of summer months (May-October) of the daily maximum 8-hour ozone concentration (ppm), averaged over three years (2012 to 2014).",environment,0-100 (most-least advantaged)
-Table.Column,ozone_pctile,number,,,"Percentile ranking of mean of summer months (May-October) of the daily maximum 8-hour ozone concentration (ppm), averaged over three years (2012 to 2014).",environment,0-100 (least-most advantaged)
-Table.Column,pm25,number,,,"Annual mean concentration of PM2.5 (average of quarterly means, μg/m3), over three years (2012 to 2014)",environment,0-100 (most-least advantaged)
-Table.Column,pm25_pctile,number,,,Percentile ranking of annual mean PM 2.5 level,environment,0-100 (least-most advantaged)
-Table.Column,dieselpm,number,,,Spatial distribution of gridded diesel PM emissions from on-road and non-road sources for a 2012 summer day in July (kg/day),environment,0-100 (most-least advantaged)
-Table.Column,dieselpm_pctile,number,,,Percentile ranking of spatial distribution of gridded diesel PM emissions from on-road and non-road sources for a 2012 summer day in July (kg/day),environment,0-100 (least-most advantaged)
-Table.Column,h20contam,number,,,Cal EnviroScreen 3.0 drinking water contaminant index for selected contaminants,environment,0-100 (most-least advantaged)
-Table.Column,h20contam_pctile,number,,,Percentile ranking of Cal EnviroScreen 3.0 drinking water contaminant index for selected contaminants,environment,0-100 (least-most advantaged)
-Table.Column,LEB,number,leb,,Life Expectancy at Birth,health,range 64-90
-Table.Column,LEB_pctile,number,leb_pctile,,Percentile ranking of life expectancy at birth,health,0-100 (least-most advantaged)
-Table.Column,white_pct,number,,,Percent of Whites in the total population,demographic,0-100
-Table.Column,black_pct,number,,,Percent of Blacks in the total population,demographic,0-100
-Table.Column,asian_pct,number,,,Percent of Asians in the total population,demographic,0-100
-Table.Column,latino_pct,number,,,Percent of Latinos in the total population,demographic,0-100
-Table.Column,multiple_pct,number,,,Percent of  two or more races in the total population,demographic,0-100
-Table.Column,NativeAm_pct,number,nativeam_pct,,Percent of  American Indian/Alaskan Natives in the total population,demographic,0-100
-Table.Column,PacificIsl_pct,number,pacificisl_pct,,Percent of Native Hawaiians and other Pacific Islanders in the total population,demographic,0-100
-Table.Column,other_pct,integer,,,Percent of some other race in the total population,demographic,0-100
-Table.Column,version,string,,,Date file was created,metadata,"Day of Week, Month Day"
+Datafile,http://library.metatab.org/healthyplacesindex.org-healthy_places_index-san_diego-4/data/hpi.csv,hpi,Healthy Places Index master file,,,,
+""
+Section,Schema,DataType,Description,Group,Comment
+Table,hpi,,,,
+Table.Column,geoid,string,ACS format geoid,geography,
+Table.Column,pop2010,integer,total  population of census tract in 2010,demographic,Decennial Census 2010
+Table.Column,pct2010gq,number,population in group quarters in 2010,demographic,range 0-100
+Table.Column,city,string,City associated with centroid of census tract,geography,spatially computed field
+Table.Column,zip,integer,5-digit postal zip code,geography,from HDI 1.1
+Table.Column,county_fips,integer,4-digit code  of county,geography,leading 0 for state is NOT included
+Table.Column,county_name,string,Name of county,geography,Alameda . . .  Yuba
+Table.Column,urbantype,string,Census classification of urban type,geography,"urban, urban_cluster, rural"
+Table.Column,hpi2score,number,Total score of HPI,hpi,weighted average of policy action area means
+Table.Column,hpi2_pctile_pos,number,Percentile ranking of HPI score (positive frame),hpi,0-100 (least-most advantaged)
+Table.Column,hpi2_pctile_neg,number,Percentile ranking of HPI score (negative frame),hpi,0-100 (most-least advantaged)
+Table.Column,hpi_top25pct,string,Top 25% most advantaged,hpi,"Yes=top 25% (most advantaged), No= bottom 75% (less advantaged)"
+Table.Column,quintiles,integer,Quintile of HPI score,hpi,1-5 (most-least advantaged)
+Table.Column,quartiles,integer,Quartile of HPI score,hpi,1-4 (most-least advantaged)
+Table.Column,economic,number,"Economic policy action area score, summed Z-scores of individual policy action area variables",economy,"Highest value= most advantaged, 0=least"
+Table.Column,economic_pctile,number,"Percentile ranking ranking of ""economic"" policy action area z score",economy,0-100 (least-most advantaged)
+Table.Column,education,number,"Education score, summed Z-scores of individual policy action area variables",education,"Highest value= most advantaged, 0=least"
+Table.Column,education_pctile,number,"Percentile ranking of ""education"" policy action area z score",education,0-100 (least-most advantaged)
+Table.Column,housing,number,"Housing policy action area score, summed Z-scores of individual policy action area variables",housing,"Highest value= most advantaged, 0=least"
+Table.Column,houseing_pctile,number,"Percentile ranking of ""housing"" policy action area z score",housing,0-100 (least-most advantaged)
+Table.Column,healthcareaccess,number,"Healthcare Access policy action area score, z-score of insurance variable",healthcare,"Highest value= most advantaged, 0=least"
+Table.Column,healthcareaccess_pctile,number,"Percentile ranking of ""healthcare access"" policy action area z score",healthcare,0-100 (least-most advantaged)
+Table.Column,neighborhood,number,"Neighborhood policy action area score, summed Z-scores of individual policy action area variables",neighborhood,"Highest value= most advantaged, 0=least"
+Table.Column,neighborhood_pctile,number,"Percentile ranking of ""neighborhood"" policy action area z score",neighborhood,0-100 (least-most advantaged)
+Table.Column,pollution,number,"Pollution (""Clean Environment"") policy action area score, summed Z-scores of individual policy action area variables",environment,"Highest value= most advantaged, 0=least"
+Table.Column,pollution_pctile,number,"Percentile ranking of ""pollution"" policy action area z score",environment,0-100 (least-most advantaged)
+Table.Column,transportation,number,"Transportation policy action area score, summed Z-scores of individual policy action area variables",transportation,"Highest value= most advantaged, 0=least"
+Table.Column,transportation_pctile,number,"Percentile ranking of ""transportation"" policy action area z score",transportation,0-100 (least-most advantaged)
+Table.Column,social,number,"Social policy action area score, summed Z-scores of individual policy action area variables",neighborhood,"Highest value= most advantaged, 0=least"
+Table.Column,social_pctile,number,"Percentile ranking of ""social"" policy action area z score",neighborhood,0-100 (least-most advantaged)
+Table.Column,insured,number,Percentage of adults aged 18 to 64 years currently insured,healthcare,0-100 (least-most advantaged)
+Table.Column,insured_pctile,number,Percentile ranking of percentage of adults aged 18 to 64 years currently insured,healthcare,0-100 (least-most advantaged)
+Table.Column,uncrowded,number,Percentage of households with less or equal to 1 occupant per room,housing,0-100 (least-most advantaged)
+Table.Column,uncrowded_pctile,number,Percentile ranking of uncrowded households,housing,0-100 (least-most advantaged)
+Table.Column,homeownership,number,Percentage of occupied housing units occupied by property owners,housing,0-100 (least-most advantaged)
+Table.Column,homeownership_pctile,number,Percentile ranking of percentage of occupied housing units occupied by property owners,housing,0-100 (least-most advantaged)
+Table.Column,automobile,number,Percentage of households with access to an automobile,transportation,0-100 (least-most advantaged)
+Table.Column,automobile_pctile,number,Percentile ranking of households with access to an automobile,transportation,0-100 (least-most advantaged)
+Table.Column,commute,number,"Percentage of workers (16 years and older) who commute to work by transit, walking, or cycling",transportation,0-100 (least-most advantaged)
+Table.Column,commute_pctile,number,"Percentile ranking of percentage of workers (16 years and older) who commute to work by transit, walking, or cycling",transportation,0-100 (least-most advantaged)
+Table.Column,inpreschool,number,Percentage of 3 and 4 year olds enrolled in school,education,0-100 (least-most advantaged)
+Table.Column,inpreschool_pctile,number,Percentile ranking of 3 and 4 year olds enrolled in school,education,0-100 (least-most advantaged)
+Table.Column,inhighschool,number,Percentage of 15-17 year olds enrolled in school,education,0-100 (least-most advantaged)
+Table.Column,inhighschool_pctile,number,Percentile ranking of 15-17 year olds enrolled in school,education,0-100 (least-most advantaged)
+Table.Column,bachelorsed,number,Percentage of population over age 25 with a bachelor's education or higher,education,0-100 (least-most advantaged)
+Table.Column,bachelorsed_pctile,number,Percentile ranking of percentage of population over age 25 with a bachelor's education or higher,education,0-100 (least-most advantaged)
+Table.Column,employed,number,Percentage of population aged 25-64 who are employed,employment,0-100 (least-most advantaged)
+Table.Column,employed_pctile,number,Percentile ranking of population aged 25-64 who are employed,employment,0-100 (least-most advantaged)
+Table.Column,abovepoverty,number,Percent of the population with an income exceeding 200% of federal poverty level,income,0-100 (least-most advantaged)
+Table.Column,abovepoverty_pctile,number,Percentile ranking of the population with an income exceeding 200% of federal poverty level,income,0-100 (least-most advantaged)
+Table.Column,income,integer,Median annual household income,income,>=0
+Table.Column,income_pctile,number,Percentile ranking of median annual household income,income,0-100 (least-most advantaged)
+Table.Column,retail,number,"Gross retail, entertainment, and education employment density (jobs/acre) on unprotected land",neighborhood,0-100 (least-most advantaged)
+Table.Column,retail_pctile,number,"Percentile ranking of employment density for retail, entertainment, and educational uses",neighborhood,0-100 (least-most advantaged)
+Table.Column,parkaccess,number,"Percentage of the population living within a half-mile of a park, beach, or open space greater than 1 acre",neighborhood,0-100 (least-most advantaged)
+Table.Column,parkaccess_pctile,number,"Percentile ranking of the population living within a half-mile of a park, beach, or open space greater than 1 acre",neighborhood,0-100 (least-most advantaged)
+Table.Column,treecanopy,number,Population-weighted percentage of the census tract area without tree canopy,neighborhood,0-100 (least-most advantaged)
+Table.Column,treecanopy_pctile,number,Percentile ranking of population-weighted percentage of the census tract area without tree canopy,neighborhood,0-100 (least-most advantaged)
+Table.Column,alcoffsale,number,Percent of Population beyond 1/4 Mile of Off-Sale Alcohol Outlets,neighborhood,0-100 (least-most advantaged)
+Table.Column,alcoffsale_pctile,number,Percentile ranking of the opulation within 1/4 Mile of Off-Sale Alcohol Outlets,neighborhood,0-100 (least-most advantaged)
+Table.Column,voting,number,Percentage of registered voters voting in the 2012 general election,civic,0-100 (least-most advantaged)
+Table.Column,voting_pctile,number,Percentile ranking of registered voters voting in the 2012 general election,civic,0-100 (least-most advantaged)
+Table.Column,ownsevere,number,Percent of low income owner households with housing costs exceeding 50% of income,income,0-100 (most-least advantaged)
+Table.Column,ownsevere_pctile,number,Percentile ranking of low income owner households with housing costs exceeding 50% of income,income,0-100 (least-most advantaged)
+Table.Column,rentsevere,number,Percent of low income renter households with housing costs exceeding 50% of income,income,0-100 (most-least advantaged)
+Table.Column,rentsevere_pctile,number,Percentile ranking of low income renter households with housing costs exceeding 50% of income,income,0-100 (least-most advantaged)
+Table.Column,houserepair,number,Percent of households with kitchen facilities and plumbing,housing,0-100 (least-most advantaged)
+Table.Column,houserepair_pctile,number,Percentile ranking of the households with kitchen facilities and plumbing,housing,0-100 (least-most advantaged)
+Table.Column,twoparents,number,Percentage of children in married-couple family households or one parent with unmarried partner family households,,0-100 (least-most advantaged)
+Table.Column,twoparents_pctile,number,Percentile ranking of percentage of children in married-couple family households or one parent with unmarried partner family households,,0-100 (least-most advantaged)
+Table.Column,supermkts,number,"Percentage of the urban population residing less than 1/2 mile from a supermarket/large grocery store, or the percent of the rural population living less than 1 mile from a supermarket/large grocery store",neighborhood,0-100 (most-least advantaged)
+Table.Column,supermkts_pctile,number,"Percentile ranking of percentage of the urban population residing less than 1/2 mile from a supermarket/large grocery store, or the percent of the rural population living less than 1 mile from a supermarket/large grocery store",neighborhood,0-100 (least-most advantaged)
+Table.Column,ozone,number,"Mean of summer months (May-October) of the daily maximum 8-hour ozone concentration (ppm), averaged over three years (2012 to 2014).",environment,0-100 (most-least advantaged)
+Table.Column,ozone_pctile,number,"Percentile ranking of mean of summer months (May-October) of the daily maximum 8-hour ozone concentration (ppm), averaged over three years (2012 to 2014).",environment,0-100 (least-most advantaged)
+Table.Column,pm25,number,"Annual mean concentration of PM2.5 (average of quarterly means, μg/m3), over three years (2012 to 2014)",environment,0-100 (most-least advantaged)
+Table.Column,pm25_pctile,number,Percentile ranking of annual mean PM 2.5 level,environment,0-100 (least-most advantaged)
+Table.Column,dieselpm,number,Spatial distribution of gridded diesel PM emissions from on-road and non-road sources for a 2012 summer day in July (kg/day),environment,0-100 (most-least advantaged)
+Table.Column,dieselpm_pctile,number,Percentile ranking of spatial distribution of gridded diesel PM emissions from on-road and non-road sources for a 2012 summer day in July (kg/day),environment,0-100 (least-most advantaged)
+Table.Column,h20contam,number,Cal EnviroScreen 3.0 drinking water contaminant index for selected contaminants,environment,0-100 (most-least advantaged)
+Table.Column,h20contam_pctile,number,Percentile ranking of Cal EnviroScreen 3.0 drinking water contaminant index for selected contaminants,environment,0-100 (least-most advantaged)
+Table.Column,leb,number,Life Expectancy at Birth,health,range 64-90
+Table.Column,leb_pctile,number,Percentile ranking of life expectancy at birth,health,0-100 (least-most advantaged)
+Table.Column,white_pct,number,Percent of Whites in the total population,demographic,0-100
+Table.Column,black_pct,number,Percent of Blacks in the total population,demographic,0-100
+Table.Column,asian_pct,number,Percent of Asians in the total population,demographic,0-100
+Table.Column,latino_pct,number,Percent of Latinos in the total population,demographic,0-100
+Table.Column,multiple_pct,number,Percent of  two or more races in the total population,demographic,0-100
+Table.Column,nativeam_pct,number,Percent of  American Indian/Alaskan Natives in the total population,demographic,0-100
+Table.Column,pacificisl_pct,number,Percent of Native Hawaiians and other Pacific Islanders in the total population,demographic,0-100
+Table.Column,other_pct,integer,Percent of some other race in the total population,demographic,0-100
+Table.Column,version,string,Date file was created,metadata,"Day of Week, Month Day"

@@ -1,26 +1,31 @@
-Declare,metatab-latest,,,,,
-Title,California Unemployment,,,,,
-Description,BLS employment measures for California,,,,,
-Identifier,7e821d06-0eab-4a11-8643-fc454de1f180,,,,,
-Name,bls.gov-laus-ca-1,,,,,
-Dataset,laus,,,,,
-Origin,bls.gov,,,,,
-Time,,,,,,
-Space,ca,,,,,
-Grain,,,,,,
-Variant,,,,,,
-Version,1,,,,,
-Created,2019-01-02T01:42:35,,,,,
-Modified,2019-01-03T00:29:31,,,,,
-Giturl,https://github.com/sandiegodata/planning-database.git,,,,,
-,,,,,,
+Declare,metatab-latest
+Title,California Unemployment
+Description,BLS employment measures for California
+Identifier,7e821d06-0eab-4a11-8643-fc454de1f180
+Name,bls.gov-laus-ca-1
+Dataset,laus
+Origin,bls.gov
+Time,
+Space,ca
+Grain,
+Variant,
+Version,1
+Created,2019-01-02T01:42:35
+Modified,2019-01-03T22:56:43
+Issued,2019-01-03T22:56:36
+Distribution,http://library.metatab.org/bls.gov-laus-ca-1/metadata.csv
+Distribution,http://library.metatab.org/bls.gov-laus-ca-1.zip
+Distribution,http://library.metatab.org/bls.gov-laus-ca-1.csv
+Ckanid,ed3e8e28-aae9-45da-942c-caf4096644ee
+Giturl,https://github.com/sandiegodata/planning-database.git
+""
 Section,Contacts,Email,Organization,Url,,
 Wrangler,Eric Busboom,eric@civicknowledge.com,Civic Knowledge,http://civicknowledge.com,,
-,,,,,,
+""
 Section,Documentation,Title,Description,,,
-Documentation,file:README.md,README,,,,
+Documentation,http://library.metatab.org/bls.gov-laus-ca-1/README.md,README,,,,
 Documentation,https://download.bls.gov/pub/time.series/la/la.txt,Primary Documentation,,,,
-,,,,,,
+""
 Section,References,Name,Description,,,
 Reference,https://download.bls.gov/pub/time.series/la/la.data.11.California#target_format=tsv,laus_ca_source,Link to source file,,,
 Reference,metapack+http://library.metatab.org/sandiegodata.org-geography-2018.csv#sd_county_boundary,sd_county_boundary,San Diego County Boundary,,,
@@ -29,31 +34,31 @@ Reference,censusgeo://US/csa,csa,Census Combined Statistical Areas,,,
 Reference,censusgeo://CA/place,places,Census Defined Places,,,
 Reference,censusgeo://CA/county,counties,Census Counties,,,
 Reference,censusgeo://US/state,states,Census States,,,
-,,,,,,
+""
 Section,Resources,Name,Description,,,
-Datafile,https://download.bls.gov/pub/time.series/la/la.area#target_format=tsv,la_areas,Area Codes,,,
-Datafile,python:pylib#generate_laus,laus_ca,Local Area Unemployment,,,
-,,,,,,
-Section,Schema,DataType,AltName,Description,Altname,Datatype
-Table,la_areas,,,,,
-Table.Column,area_type_code,string,,,,
-Table.Column,area_code,string,,,,
-Table.Column,area_text,string,,,,
-Table.Column,display_level,integer,,,,
-Table.Column,selectable,string,,,,
-Table.Column,sort_sequence,integer,,,,
-Table,laus_ca,,,,,
-Table.Column,year,integer,,Year,,
-Table.Column,month,integer,,Month or 0 if an annual average,,
-Table.Column,is_ann_avg,integer,,1 if the value is the annual average ( period = ‘M13’,,
-Table.Column,period,string,,"Period code. Month number, or ‘M13’ for annual averages",,
-Table.Column,geoid,string,,Census geoid for the BLS region,,
-Table.Column,stusab,string,,US State abbreviation,,
-Table.Column,county,string,,County FIPS code,,
-Table.Column,census_region,string,,Name of census region ( summary level ) for the BLS area code,,
-Table.Column,series_id,string,,Series ID code,,
-Table.Column,sa_code,string,,"Seasonal adjustment part of series_id. S for seasonally adjusted, U for unadjusted",,
-Table.Column,area_code,string,,Area code part of series_id,,
-Table.Column,measure_code,string,,Measure code part of series_id,,
-Table.Column,value,number,,"Unemployment value, in percentage",,
-Table.Column,footnote_codes,string,,,,
+Datafile,http://library.metatab.org/bls.gov-laus-ca-1/data/la_areas.csv,la_areas,Area Codes,,,
+Datafile,http://library.metatab.org/bls.gov-laus-ca-1/data/laus_ca.csv,laus_ca,Local Area Unemployment,,,
+""
+Section,Schema,DataType,Description,Datatype
+Table,la_areas,,,
+Table.Column,area_type_code,string,,
+Table.Column,area_code,string,,
+Table.Column,area_text,string,,
+Table.Column,display_level,integer,,
+Table.Column,selectable,string,,
+Table.Column,sort_sequence,integer,,
+Table,laus_ca,,,
+Table.Column,year,integer,Year,
+Table.Column,month,integer,Month or 0 if an annual average,
+Table.Column,is_ann_avg,integer,1 if the value is the annual average ( period = ‘M13’ ),
+Table.Column,period,string,"Period code. Month number, or ‘M13’ for annual averages",
+Table.Column,geoid,string,Census geoid for the BLS region,
+Table.Column,stusab,string,US State abbreviation,
+Table.Column,county,string,County FIPS code,
+Table.Column,census_region,string,Name of census region ( summary level ) for the BLS area code,
+Table.Column,series_id,string,Series ID code,
+Table.Column,sa_code,string,"Seasonal adjustment part of series_id. S for seasonally adjusted, U for unadjusted",
+Table.Column,area_code,string,Area code part of series_id,
+Table.Column,measure_code,string,Measure code part of series_id.,
+Table.Column,value,number,"Unemployment value, in percentage",
+Table.Column,footnote_codes,string,,
