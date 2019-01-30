@@ -11,7 +11,8 @@ tract definitions for San Diego count. The source files are:
 * Census tract boundaries for 2016
 * Census places and counties
 
-In addition to simply combining these four boundary files, the dataset ALSO links tracts into the other three regions, in the ``tracts_links`` and
+In addition to simply combining these four boundary files, the dataset also
+links tracts into the other three regions, in the ``tracts_links`` and
 ``tracts_all_regions`` datasets. Using these datasets, you can get all of the
 tracts in Escondido, or all of the tracts in the San Diego community of
 Clairemont. The join is performed by containment of the Internal Point, which
