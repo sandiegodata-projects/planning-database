@@ -21,7 +21,7 @@ The data for this project is [stored in the `planning-project` group in our data
 * [Cities, Communities and Tracts](https://data.sandiegodata.org/dataset/sangis-org-communities-2018)
   Geographic boundaries and link files for cities, communities and tracts in
   San Diego County.
-* [California Healthy Places Index](https://data.sandiegodata.org/dataset/healthyplacesindex-org-healthy_places_index-san_diego) Tract level data and index scores for a wide variety of social measures. 
+* [California Healthy Places Index](https://data.sandiegodata.org/dataset/california-healthy-places-index) Tract level data and index scores for a wide variety of social measures. 
 
 These datasets are organized around geographic index files, files that link a code for a region to a regio identifier and the geometry for the region. For instance, the tracts file has one record per tract in the county, and for each tract includes: 
 
